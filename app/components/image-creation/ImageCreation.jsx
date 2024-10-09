@@ -59,6 +59,8 @@ const myCreationsData = [
 const ImageCreation = () => {
   const [isMyCreations, setIsMyCreations] = useState(true);
 
+  
+
   return (
     <div className={styles.imageCreationSection}>
       <div className={styles.topbar}>
@@ -149,3 +151,5 @@ const ImageCreation = () => {
 };
 
 export default ImageCreation;
+
+

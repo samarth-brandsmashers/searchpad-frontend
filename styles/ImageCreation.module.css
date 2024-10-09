@@ -126,7 +126,9 @@
 .imageCreationSection .topbar{
   display: flex;
   justify-content: center;
+  gap:40px;
   border-bottom: 0.5px solid rgba(255, 255, 255, 0.300);
+  cursor: pointer;
 }
 
 .imageCreationSection .topbar span{
@@ -244,6 +246,9 @@ color: #FFFFFF;
 
 }
 .centerHeading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
 font-weight: 500;
 line-height: 19.36px;
@@ -256,3 +261,10 @@ color: #FFFFFF;
   width: 20px; /* Set a fixed width for the icon */
   height: auto;
 }
+/* bg blue */
+
+/* .image:hover{
+  background-color:blur;
+  width: 800px;
+
+} */
