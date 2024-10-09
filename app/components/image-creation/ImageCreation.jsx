@@ -7,33 +7,54 @@ import { HiMiniPhoto } from "react-icons/hi2";
 import { MdOutlinePhotoLibrary } from "react-icons/md";
 import { FaShareAlt, FaTrash, FaEllipsisV } from 'react-icons/fa';
 import styles from '@/styles/ImageCreation.module.css';
+import Image from 'next/image';
+import frame1 from '../../../public/frame1.png';
+import frame2 from '../../../public/frame2.png';
+import frame31 from '../../../public/frame3-1.png';
+import frame32 from '../../../public/frame3-2.png';
+import frame33 from '../../../public/frame3-3.png';
+import frame34 from '../../../public/frame3-4.png';
+import image1 from '../../../public/image1.png';
+import image2 from '../../../public/image2.png';
+import image3 from '../../../public/image3.png';
+import image4 from '../../../public/image4.png';
+import image5 from '../../../public/image5.png';
+import image6 from '../../../public/image6.png';
+import image7 from '../../../public/image7.png';
+import image8 from '../../../public/image8.png';
+import image9 from '../../../public/image9.png';
+import image10 from '../../../public/image10.png';
+import image11 from '../../../public/image11.png';
+import image12 from '../../../public/image12.png';
 
 const myCreationsData = [
   {
     title: "Crypto AI Illustrations",
     prompt: "Generate creative AI-based illustrations for crypto marketing.",
     images: [
-      "https://images.unsplash.com/photo-1639426090332-69e939822d99?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1639426090332-69e939822d99?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      frame1, frame1, frame1,frame1
     ]
   },
   {
     title: "VR Headset Illustrations",
     prompt: "VR headset futuristic illustrations.",
     images: [
-      "https://images.unsplash.com/photo-1639426090332-69e939822d99?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      frame2, frame2, frame2, frame2,
     ]
   },
   {
     title: "Cat Concept Mobile App",
     prompt: "Mobile app UI concept for cat lovers.",
     images: [
-      "https://images.unsplash.com/photo-1639426090332-69e939822d99?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1639426090332-69e939822d99?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "https://images.unsplash.com/photo-1639426090332-69e939822d99?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    ]
+      frame31,
+      frame32,
+      frame33,
+      frame34,
+    ] 
   }
 ];
+
+
 
 const ImageCreation = () => {
   const [isMyCreations, setIsMyCreations] = useState(true);
@@ -77,7 +98,7 @@ const ImageCreation = () => {
             </div>
             <div className={styles.images}>
               {creation.images.map((image, idx) => (
-                <img
+                <Image
                   key={idx}
                   src={image}
                   alt={creation.title}
@@ -90,7 +111,37 @@ const ImageCreation = () => {
             </div>
           </div>
         ) : (
-          <div>Inspirations</div>
+          
+          <div>
+          <div className={styles.imageContainer}>
+           <div className={styles.combineimage}> 
+            <Image src={image1} className={styles.image}/>
+            <Image src={image7} />
+            <Image src={image8} />
+           </div>  
+
+           <div className={styles.combineimage}>
+            <Image src={image2} />
+            <Image src={image3} />
+            <Image src={image9} />
+           </div>
+
+           <div className={styles.combineimage}>
+           <Image src={image4} />
+           <Image src={image10} />
+
+           </div>
+
+           <div className={styles.combineimage}>
+           <Image src={image5} />
+           <Image src={image6} />
+            <Image src={image11} />
+            <Image src={image12} />
+           </div>
+
+          </div>
+          
+          </div>
         )}
       </div>
     </div>
