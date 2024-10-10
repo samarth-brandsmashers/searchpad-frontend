@@ -6,6 +6,7 @@ import Image from "next/image";
 import { IoIosImages } from "react-icons/io";
 import { GoInfo } from "react-icons/go";
 import { MdOutlineTune } from "react-icons/md";
+import ReactAudioPlayer from "react-audio-player";
 import { FaExpandArrowsAlt } from "react-icons/fa";
 import { FiUploadCloud } from "react-icons/fi";
 import { BsStars } from "react-icons/bs";

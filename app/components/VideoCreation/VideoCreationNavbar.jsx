@@ -23,10 +23,9 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navItems}>
-        <div className={styles.navIcons}>
-          <FaLongArrowAltLeft />
-          <Image
-            src={"/Images/logos/Searchpad.png"}
+        <div>
+        <Image
+            src={'/Images/logos/Searchpad.png'}
             alt="Logo"
             className={styles.logoImage}
             width={120}

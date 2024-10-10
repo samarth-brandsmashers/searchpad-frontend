@@ -5,6 +5,12 @@ import styles from "@/styles/VideoCreation/VideoCreationSidebar.module.css";
 import Image from "next/image";
 import { AiOutlineHome } from "react-icons/ai";
 import { RiFolderShield2Line } from "react-icons/ri";
+import { SlMenu } from "react-icons/sl"; // Menu Icon
+import { AiOutlineAppstoreAdd } from "react-icons/ai"; // Add Plugin Icon
+import { TbLayoutGridAdd } from "react-icons/tb";
+import { AiOutlineFileImage } from "react-icons/ai"; // Media Library Icon
+import { BiHistory } from "react-icons/bi"; // History Icon
+import { MdKeyboardVoice } from "react-icons/md";
 import { RiVipCrown2Line } from "react-icons/ri";
 import Link from "next/link";
 
