@@ -24,9 +24,9 @@ const ImageCreationSidebar = () => {
       <div className={styles.section}>
         <label className={styles.label}>Resolution</label>
         <div className={styles.buttonGroup}>
-          <button className={styles.optionButton}>Low 720p</button>
-          <button className={styles.optionButton}>Medium 1080p</button>
-          <button className={styles.optionButton}>High 4K</button>
+          <button className={styles.optionButtons}>Low <span className={styles.spantext}>720p</span></button>
+          <button className={styles.optionButtons}>Medium <span className={styles.spantext}>1080p</span></button>
+          <button className={styles.optionButtons}>High <span className={styles.spantext}>4K</span></button>
         </div>
         <button className={styles.customSizeButton}>Custom size</button>
       </div>
