@@ -16,6 +16,8 @@ import myinspretion from '../../../public/icons/myinspretion.png';
 import crown from '../../../public/icons/crown.png';
 import profile from '../../../public/profile.png';
 import logospad from '../../../public/logospad.png';
+
+import logoss from '../../../public/icons/logo.png';
 import green from '../../../public/green.png';
 import graphicsimage from '../../../public/videoCreation/graphics.png';
 import adcreativeimage from '../../../public/videoCreation/adCreative.png';
@@ -33,14 +35,29 @@ const VideoCreationPage = () => {
     setIsDropdownOpen(prev => !prev);
   };
   return (
+    <>
+  <div className={styles.navsection}>
+  <div className={styles.logo}>
+    <FaArrowLeftLong style={{ width: '16px', height: '16px' }} className={styles.arrow} />
+
+    <Image src={logoss} alt="Logo Spad" style={{ width: '40px', height: '40px' }} />
+    <h1 className={styles.logoHeading}>Searchpad</h1>
+  </div>
+  
+  <div className={styles.buttons}>
+    <div className={styles.tokenContainer}>
+      <Image src={tokenleft} alt="token icon" className={styles.tokenImage} />
+      <p className={styles.paragraph}>25 Tokens Left</p>
+    </div>
+    <button className={styles.createButtons}>
+      <Image src={crown} className={styles.crownButton} /> <p className={styles.paragraph}>Upgrade</p>
+    </button>
+  </div>
+</div>
+
+
     <div className={styles.container}>
-      <nav className={styles.sidebar}>
-      <div className={styles.logo}>
-        
-      <FaArrowLeftLong style={{ width: '10px', height: '10px' }} />
-         <Image src={logospad} alt="Logo Spad" />
-       </div>
-        
+     <nav className={styles.sidebar}>
       <ul className={styles.navLinks}>
           
         <li className={styles.listItem}> <Image src={homes}/>  Home </li>
@@ -76,33 +93,25 @@ const VideoCreationPage = () => {
 
 </nav>
 
-     <main className={styles.mainContent}>
-      <div className={styles.topBar}>
-        <div className={styles.buttons}>
-          <div className={styles.tokenContainer}>
-            <Image src={tokenleft} alt="token icon" className={styles.tokenImage} />
-            <p className={styles.paragraph}>25 Tokens Left</p>
-           </div>
-         <button className={styles.createButtons}> <Image src={crown} className={styles.crownButton}/>Upgrade</button>
-        </div>
-      </div>
+<main className={styles.mainContent}>
+     
 <header className={styles.header}>
   <div className={styles.textContainer}>
     <h1>Ready to start your next<br></br> visual project?</h1>
     <p>Create stunning designs, documents, and data<br></br> visualizations—AI makes it easy.</p>
   </div>
   <div className={styles.imageContainer}>
-    <Image src={robot} alt="robo" width={100} height={100} />
+    <Image src={robot} alt="robo" width={342} height={300} />
   </div>
 </header>
 
 
         <section className={styles.toolsSection}>
-        <div className={styles.searchContainer}>
+         <div className={styles.searchContainer}>
               <LuSearch width={16} height={16}/> 
                   <input type="text" placeholder="Search..." className={styles.searchInput} />
                 <button className={styles.searchButton}></button>
-            </div>
+          </div>
 
           <div className={styles.toolsContainer}>
             <div className={styles.toolCard}><Image src={graphicsimage} className={styles.toolsimage}/>
@@ -156,7 +165,7 @@ const VideoCreationPage = () => {
           </div>
 
 
-         <div className={styles.mainContents}>
+         {/* <div className={styles.mainContents}> */}
           <div className={styles.creationsContainer}>
             <div className={styles.creationCard}>
               <Image src={portfolio} alt='ai chat'  className={styles.roboimage} />
@@ -189,10 +198,11 @@ const VideoCreationPage = () => {
               <p>2 week ago</p>
             </div>
           </div>
-          </div>
+          {/* </div> */}
        </section>
       </main>
     </div>
+    </>
   );
 }
 export default VideoCreationPage;

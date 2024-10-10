@@ -5,8 +5,8 @@ import VideoCreationPage from "./components/sidebars/VideoCreations";
 export default function Home() {
   return (
     <div>
-      {/* <ToolsHomeSidebar/> */}
-       <VideoCreationPage/>
+      <ToolsHomeSidebar/>
+       {/* <VideoCreationPage/> */}
     </div>
   );
 }
