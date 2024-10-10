@@ -10,8 +10,8 @@ import VideoCreationPage from "./components/sidebars/VideoCreations";
 const page = () => {
   return (
     <div>
-      {/* <ToolsHomeSidebar/> */}
-       <VideoCreationPage/>
+      <ToolsHomeSidebar/>
+       {/* <VideoCreationPage/> */}
     </div>
   );
 };

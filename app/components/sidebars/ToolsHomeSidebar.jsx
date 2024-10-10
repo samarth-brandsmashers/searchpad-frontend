@@ -1,6 +1,8 @@
 
 "use client"; 
 import { useState } from 'react';
+
+import { IoIosArrowDown } from "react-icons/io";
 import { FaChevronDown, FaArrowRight } from 'react-icons/fa';
 import styles from '../../../styles/sidebar/toolsHomeSidebar.module.css';
 import robot from '../../../public/robo.png';
@@ -37,6 +39,10 @@ import crown from '../../../public/icons/crown.png';
 import profile from '../../../public/profile.png';
 import logospad from '../../../public/logospad.png';
 import green from '../../../public/green.png';
+import logoss from '../../../public/icons/logo.png';
+import aiIcon from '../../../public/icons/aiIcon.png';
+import forwordicon from '../../../public/icons/forwordicon.png';
+
 
 
 export default function ToolsHomeSidebar() {
@@ -48,11 +54,14 @@ export default function ToolsHomeSidebar() {
     setIsDropdownOpen(prev => !prev);
   };
 
-
   return (
     <div className={styles.container}>
       <nav className={styles.sidebar}>
-        <div className={styles.logo}><Image src={logospad}/></div>
+        <div className={styles.logo}>
+        <Image src={logoss} alt="Logo Spad" style={{ width: '40px', height: '40px' }} />
+       <h1 className={styles.logoHeading}>Searchpad</h1>
+       <Image src={forwordicon} style={{ width: '15px', height: '15px' }} alt='forword icon ' className={styles.forwordicon}/>
+       </div>
         <ul className={styles.navLinks}>
           
         <li className={styles.listItem}> <Image src={homes}/>  Home </li>
@@ -61,7 +70,12 @@ export default function ToolsHomeSidebar() {
 
         <li  className={styles.listItem}><Image src={myinspretion}/> Inspirations</li>
 
-          <h2 className={styles.headingss}>AI Tools</h2>
+        
+          <div className="flex items-center">
+      <h2 className={styles.headingss}>AI Tools</h2>
+      <IoIosArrowDown className="downicon" />
+    </div>
+          
 
           <li className={styles.listItem}><Image src={image}/>Image Creation</li>
 
@@ -73,7 +87,17 @@ export default function ToolsHomeSidebar() {
 
           <li  className={styles.listItem}><Image src={document}/>Document Creation</li>
 
-          <h2  className={styles.middleheadiing}>Data & Visualization</h2>
+        
+          <div className="flex items-center">
+          <div className="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
+        <span className={styles.middleheadiing}>
+        Data & Visualization
+      </span>
+         
+
+
+          <div class="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
+        </div>
 
           <li className={styles.listItem}><Image src={graphics}/>Graphic Design</li>
 
@@ -91,7 +115,7 @@ export default function ToolsHomeSidebar() {
   <Image src={crown} className={styles.crown}/>
   <h1 className={styles.headingss}>Unlock the full power of Generative AI</h1>
   <p className={styles.paragraphss}>Go limitless with Searchpad</p>
-  <button className={styles.upgradeButton}>Upgrade Plan</button>
+  <button className={styles.upgradeButton}><span className={styles.upgradetext}>Upgrade Plan</span></button>
 </div>
 
 
@@ -100,7 +124,7 @@ export default function ToolsHomeSidebar() {
       <Image src={profile} alt="Profile" className={styles.profileImage} />
       <h1 className={styles.profileName} onClick={toggleDropdown}>
         Sanusilamide
-        <FaChevronDown className={styles.icon} /> 
+        <FaChevronDown className={styles.icon}   /> 
       </h1>
       {isDropdownOpen && (
         <ul className={styles.dropdownList}>
@@ -129,8 +153,14 @@ export default function ToolsHomeSidebar() {
                 <button className={styles.searchButton}></button>
             </div>
                
-               <button className={styles.generateButton}>Generate With AI</button>
-               <button className={styles.createButton}>+ Create New</button>
+             
+<button className={styles.generateButton}>
+  <div style={{ display: 'flex', alignItems: 'center' }}>
+    <Image src={aiIcon} alt="AI Icon" style={{ marginRight: '8px' }} />
+    <p className={styles.paragraph}>Generate With AI</p>
+  </div>
+</button>
+        <button className={styles.createButton}><p className={styles.paragraph}>+ Create New</p></button>
             </div>
       </div>
 <header className={styles.header}>
@@ -139,13 +169,13 @@ export default function ToolsHomeSidebar() {
     <p>Create stunning designs, documents, and data<br></br> visualizations—AI makes it easy.</p>
   </div>
   <div className={styles.imageContainer}>
-    <Image src={robot} alt="robo" width={100} height={100} />
+    <Image src={robot} alt="robo" width={342} height={342} />
   </div>
 </header>
 
 
         <section className={styles.toolsSection}>
-        <h2> Create stunning designs, documents, and data visualizations—AI makes it easy.</h2>
+        <h2 className={styles.headings}> Create stunning designs, documents, and data visualizations—AI makes it easy.</h2>
           <div className={styles.toolsContainer}>
             <div className={styles.toolCard}><Image src={imageCreation} className={styles.toolsimage}/>
             <h1 className={styles.design}>Image Creation</h1></div>
@@ -166,8 +196,7 @@ export default function ToolsHomeSidebar() {
 
         <section className={styles.reationsSectionc}>
           <h2 className={styles.heading}> My Creations</h2>
-
-          <div className={styles.creationsContainer}>
+        <div className={styles.creationsContainer}>
             <div className={styles.creationCard}>
               <Image src={framerobo} alt='ai chat' className={styles.roboimage} />
               <h1>Logo Design Brief</h1>
