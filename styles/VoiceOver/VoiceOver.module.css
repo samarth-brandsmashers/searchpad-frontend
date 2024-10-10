@@ -1,0 +1,11 @@
+.heading {
+  background: linear-gradient(212.53deg, #ddffb3 5.24%, #0e5816 55.56%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.docsIcon {
+  background: linear-gradient(128.33deg, #171c5e 28.92%, #855dfc 72.08%);
+}
+.templateIcon {
+  background: linear-gradient(128.33deg, #171c5e 28.92%, #855dfc 72.08%);
+}
