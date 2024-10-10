@@ -56,12 +56,21 @@
   margin-bottom: 30px;
 }
 
+.createbtn{
+  background: linear-gradient(134.14deg,#2d2d2d 46.75%,rgba(147, 147, 147, 0.6) 154.84%) !important;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 10px 10px 0px 0px;
+}
+
 .createButton {
-  background-color: linear-gradient(
-    134.14deg,
-    #2d2d2d 46.75%,
-    rgba(147, 147, 147, 0.6) 154.84%
-  );
+  background: linear-gradient(134.14deg,#2d2d2d 46.75%,rgba(147, 147, 147, 0.6) 154.84%) !important;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -73,12 +82,12 @@
 }
 
 .createButton:hover {
-  /* background: linear-gradient(
+  background: linear-gradient(
     134.14deg,
     #4a90e2 46.75%,
     rgba(147, 147, 147, 0.6) 154.84%
-  ); */
-  border-color: #6949ff;
+  );
+  /* border-color: #6949ff; */
 }
 
 .toolButton {
@@ -233,9 +242,16 @@
   gap: 10px;
   border-radius: 8px;
 }
-.tune {
+
+.iconWrapper{
+  display: inline-block; /* To make sure the background fits the icon */
   background-color: #2d2d2d;
+  padding: 5px; /* Adjust this to control how much space is around the icon */
   border-radius: 8px;
+}
+.tune {
+  font-size: 17px; /* Adjust the icon size as needed */
+  color: white;
 }
 
 .voiceSection {
@@ -329,7 +345,7 @@
 }
 
 .voiceButton:hover {
-  background-color: #555;
+  /* background-color: #555; */
   border: 1px solid #6949FF;
 
 }
@@ -373,6 +389,50 @@
 
 }
 
+.portrait{
+  background: linear-gradient(134.14deg, #2D2D2D 46.75%, rgba(147, 147, 147, 0.6) 154.84%);
+  border: 1px solid #C9C9C9;
+  width: 24px;
+  height: 32px;
+  border-radius: 2px;
+}
+
+.portraitContainer{
+  display: flex;
+  justify-content:flex-start;
+  gap: 10px;
+}
+
+.landscapeContainer{
+  display: flex;
+  justify-content:flex-start;
+  gap: 10px;
+  align-items: center;
+}
+
+.landscape{
+  background: linear-gradient(134.14deg, #2D2D2D 46.75%, rgba(147, 147, 147, 0.6) 154.84%);
+  border: 1px solid #C9C9C9;
+  width: 32px;
+  height: 24px;
+  border-radius: 2px;
+}
+
+.squareContainer{
+  display: flex;
+  justify-content:flex-start;
+  gap: 10px;
+  align-items: center;
+}
+
+.square{
+  background: linear-gradient(134.14deg, #2D2D2D 46.75%, rgba(147, 147, 147, 0.6) 154.84%);
+  border: 1px solid #C9C9C9;
+  width: 32px;
+  height: 32px;
+  border-radius: 2px;
+}
+
 .aspectButton {
   background-color: #2d2d2d;
   color: white;
@@ -386,7 +446,7 @@
 }
 
 .aspectButton:hover {
-  background-color: #3f3f3f;
+  /* background-color: #3f3f3f; */
   border-color: #6949ff;
 }
 
@@ -412,7 +472,7 @@
 }
 
 .customSizeButton:hover {
-  background-color: #3f3f3f;
+  /* background-color: #3f3f3f; */
   border-color: #888;
 }
 
@@ -470,6 +530,16 @@
   gap: 10px;
 }
 
+.player{
+  background: #2D2D2D;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  border-radius: 8px;
+  align-items: center;
+  margin: 20px 0px;
+}
+
 .audioOption {
   display: flex;
   justify-content: space-between;
@@ -483,6 +553,98 @@
 .audioInfo {
   display: flex;
   flex-direction: column;
+}
+
+.customAudioPlayer{
+  background: #2D2D2D;
+  border-radius: 8px;
+}
+.audioPlayer {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  /* background: #2D2D2D; */
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.audioDetails {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.audioTitle {
+  font-weight: bold;
+}
+
+.audioArtist {
+  font-size: 0.8em;
+  color: gray;
+}
+
+.playPauseButton {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  cursor: pointer;
+}
+
+.progressBar {
+  width: 60%;
+  height: 5px;
+  background-color: #ddd;
+  border-radius: 5px;
+  margin: 5px;
+  position: relative;
+}
+
+.progress {
+  height: 100%;
+  background-color: #B3A3FF;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progressInput {
+  -webkit-appearance: none; /* Remove default styling */
+  appearance: none;
+  width: 100%; /* Full width to match .progressBar */
+  height: 5px; /* Match height with .progressBar */
+  background: transparent; /* Make input transparent */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.progressInput::-webkit-slider-thumb {
+  -webkit-appearance: none; 
+  appearance: none;
+  width: 10px; 
+  height: 10px; 
+  background: #B3A3FF; 
+  cursor: grab; 
+  border-radius: 50%;
+}
+
+.progressInput::-moz-range-thumb {
+  width: 10px; 
+  height: 10px; 
+  background: #B3A3FF; 
+  border-radius: 50%;
+  cursor: grab; 
+}
+
+.audioTime {
+  font-size: 0.8em;
+  color: gray;
+  margin-right: 20px;
+}
+
+
+.audioTime {
+  font-size: 0.8em;
+  color: gray;
+  margin-right: 20px;
 }
 
 .uploadButton {
@@ -505,6 +667,12 @@
   border-bottom: 0.5px solid #3f3f3f;
 }
 
+.notIcon{
+  text-align: center;
+  display: inline-flex;
+
+}
+
 .captionOptions {
   display: grid;
   gap: 10px;
@@ -514,14 +682,91 @@
 
 .captionOption {
   padding: 10px 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color: #2D2D2D;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.captionOption:hover {
-  background-color: #d9d9d9;
+.basicOption{
+  padding: 10px 20px;
+  font-family: 'Arial', sans-serif;
+  background-color: #2D2D2D;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.youtuberOption{
+  padding: 10px 20px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-color: #2D2D2D;
+  color: #FFCC00;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.wrap1Option{
+  padding: 10px 20px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background-color: #2D2D2D;
+  border: none;
+  border-radius: 4px;
+  color: rgb(160, 221, 175);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.wrap1Option p{
+  background-color: #6949FF;
+  padding: 0px 5px;
+  border-radius: 2px;
+  font-size: 16px;
+  
+}
+
+
+.wrap2Option{
+  padding: 10px 20px;
+  font-family: 'Playfair Display', serif;
+  background-color: #2D2D2D;
+  border: none;
+  color:  rgb(0, 0, 0);
+  border-radius: 4px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.wrap2Option p{
+  background-color: #E149FF;
+  padding: 0px 5px;
+  border-radius: 2px;
+  font-size: 16px;
+}
+
+.boldOption{
+  padding: 10px 20px;
+  font-family: 'Playfair Display', serif;
+  background-color: #2D2D2D;
+  color: white;
+  display: flex;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.boldOption h1{
+  background-color:#FFBF49;
+  padding: 0px 5px;
 }
 
 .captionContainer{
@@ -549,10 +794,22 @@
 }
 
 .generateButton:hover {
-  background-color: #218838;
+  /* background-color: #218838; */
 }
 
-.captionsSection p{
+/* .captionsSection p{
   font-size: 10px;
   color: #C9C9C9;
+} */
+
+.leftinfoIcon{
+  color: #686567;
+  height: 20px;
+  width: 20px;
+}
+
+.preview{
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

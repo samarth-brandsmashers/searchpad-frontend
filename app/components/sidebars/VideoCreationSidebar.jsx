@@ -3,12 +3,8 @@
 import React, { useState } from "react";
 import styles from "@/styles/VideoCreation/VideoCreationSidebar.module.css";
 import Image from "next/image";
-import { SlMenu } from "react-icons/sl"; // Menu Icon
-import { AiOutlineAppstoreAdd } from "react-icons/ai"; // Add Plugin Icon
-import { TbLayoutGridAdd } from "react-icons/tb";
-import { AiOutlineFileImage } from "react-icons/ai"; // Media Library Icon
-import { BiHistory } from "react-icons/bi"; // History Icon
-import { MdKeyboardVoice } from "react-icons/md";
+import { AiOutlineHome } from "react-icons/ai";
+import { RiFolderShield2Line } from "react-icons/ri";
 import { RiVipCrown2Line } from "react-icons/ri";
 import Link from "next/link";
 
@@ -25,13 +21,13 @@ const Sidebar = () => {
         <ul className={styles.sidebarMenu}>
           <Link href={"/tools"}>
             <li>
-              <TbLayoutGridAdd className={styles.menuIcon} />
+              <AiOutlineHome className={styles.menuIcon} />
               {isOpen && <span>Home</span>}
             </li>
           </Link>
           <Link href={"/tools/media-library"}>
             <li>
-              <AiOutlineFileImage className={styles.menuIcon} />
+              <RiFolderShield2Line className={styles.menuIcon} />
               {isOpen && <span>My Creations</span>}
             </li>
           </Link>
@@ -39,7 +35,7 @@ const Sidebar = () => {
           <ul className={styles.subMenu}>
             <Link href={"/tools/voices"}>
               <li>
-                <MdKeyboardVoice className={styles.menuIcon} />
+                <RiFolderShield2Line className={styles.menuIcon} />
                 {isOpen && <span>Inspirations</span>}
               </li>
             </Link>

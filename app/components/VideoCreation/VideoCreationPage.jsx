@@ -1,22 +1,122 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styles from "@/styles/VideoCreation/VideoCreationPage.module.css";
 import Image from "next/image";
 import { IoIosImages } from "react-icons/io";
 import { GoInfo } from "react-icons/go";
 import { MdOutlineTune } from "react-icons/md";
-import ReactAudioPlayer from "react-audio-player";
 import { FaExpandArrowsAlt } from "react-icons/fa";
 import { FiUploadCloud } from "react-icons/fi";
 import { BsStars } from "react-icons/bs";
 import { BiCaptions } from "react-icons/bi";
+import { MdInfoOutline } from "react-icons/md";
+import { MdDoNotDisturb } from "react-icons/md";
+
+const CustomAudioPlayer = ({ audioFile, title, artist }) => {
+  const audioRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isSliding, setIsSliding] = useState(false);
+
+  const togglePlayPause = () => {
+    const audio = audioRef.current;
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const handleTimeUpdate = () => {
+    if (!isSliding) {
+      const audio = audioRef.current;
+      setCurrentTime(audio.currentTime);
+    }
+  };
+
+  const handleLoadedMetadata = () => {
+    const audio = audioRef.current;
+    setDuration(audio.duration);
+  };
+
+  const formatTime = (time) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60)
+      .toString()
+      .padStart(2, "0");
+    return `${minutes}:${seconds}`;
+  };
+
+  const handleSliderChange = (e) => {
+    const newTime = (e.target.value / 100) * duration;
+    audioRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
+  };
+
+  const handleSliderMouseDown = () => {
+    setIsSliding(true);
+  };
+
+  const handleSliderMouseUp = () => {
+    setIsSliding(false);
+  };
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    audio.addEventListener("timeupdate", handleTimeUpdate);
+    audio.addEventListener("loadedmetadata", handleLoadedMetadata);
+    return () => {
+      audio.removeEventListener("timeupdate", handleTimeUpdate);
+      audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
+    };
+  }, []);
+
+  return (
+    <div className={styles.customAudioPlayer}>
+      <div className={styles.audioPlayer}>
+        <audio ref={audioRef} src={audioFile} />
+        <div className={styles.audioDetails}>
+          <span className={styles.audioTitle}>{title}</span>
+          <span className={styles.audioArtist}>{artist}</span>
+        </div>
+        <div className={styles.player}>
+          <button className={styles.playPauseButton} onClick={togglePlayPause}>
+            {isPlaying ? "❚❚" : "▶️"}
+          </button>
+          <div className={styles.progressBar}>
+            <div
+              className={styles.progress}
+              style={{ width: `${(currentTime / duration) * 100}%` }}
+            />
+            {/* Slider input to control playback */}
+            <input
+              type="range"
+              className={styles.progressInput}
+              value={duration ? (currentTime / duration) * 100 : 0}
+              onChange={handleSliderChange}
+              onMouseDown={handleSliderMouseDown}
+              onMouseUp={handleSliderMouseUp}
+            />
+          </div>
+          <div className={styles.audioTime}>
+            {formatTime(currentTime)} / {formatTime(duration)}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const VideoToolSelection = () => {
   const [selectedTool, setSelectedTool] = useState("Short / Reel Creator");
 
   const tools = [
     "Short / Reel Creator",
+    "Add Captions to Videos",
+    "YouTube Clip Generator",
     "Talking Avatar Creator",
     "Face Swap in Videos",
     "Website Review Video Maker",
@@ -35,37 +135,37 @@ const VideoToolSelection = () => {
       name: "Nigel",
       description:
         "Warm & Friendly (Young Adult Female, American, Midwestern Accent)",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
     {
       name: "Valentine",
       description:
         "Authoritative & Confident (Middle-Aged Male, British Accent)",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
     {
       name: "Daphne",
       description:
         "Conversational & Relatable (Young Adult Male, Irish Accent)",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
     {
       name: "Dahlia",
       description:
         "Sophisticated & Elegant (Middle-Aged Female, French Accent)",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
     {
       name: "Gwendolyn",
       description:
         "Crisp & Professional (Adult Male, Indian, Neutral Indian Accent)",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
     {
       name: "Marjory",
       description:
         "Inspiring & Motivational (Adult Male, Nigerian, Neutral Nigerian Accent)",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
   ];
 
@@ -73,33 +173,33 @@ const VideoToolSelection = () => {
     {
       name: "Creative Technology Showreel",
       description: "Leo Murray DDS",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
     {
       name: "Lazy Day - Stylish Futuristic Chill",
       description: "Melinda Hirthe",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
     {
       name: "Night Detective",
       description: "Timmy Larkin",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
     {
       name: "In Slow Motion (Inspiring Ambient Lounge)",
       description: "Patty Grady",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
     {
       name: "AMALGAM",
       description: "Luke Schultz",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
     {
       name: "No Place To Go",
       description:
         "Inspiring & Motivational (Adult Male, Nigerian, Neutral Nigerian Accent)",
-      audioFile: "/path/to/nigel-voice-preview.mp3",
+      audioFile: "/Audio/Audio.mp3",
     },
   ];
 
@@ -118,7 +218,7 @@ const VideoToolSelection = () => {
 
           <div className={styles.toolGrid}>
             <button
-              className={`${styles.toolButton} ${
+              className={`${styles.createbtn} ${
                 selectedTool === "Create New" ? styles.createButton : ""
               }`}
               onClick={() => handleToolClick("Create New")}
@@ -186,7 +286,10 @@ const VideoToolSelection = () => {
                 </p>
               </div>
               <div className={styles.selctvoicebtn}>
-                <MdOutlineTune className={styles.tune} />
+                <div className={styles.iconWrapper}>
+                  <MdOutlineTune className={styles.tune} />
+                </div>
+
                 <button className={styles.generateScriptButton}>
                   <IoIosImages />
                   Record Yourself
@@ -211,11 +314,7 @@ const VideoToolSelection = () => {
                     </div>
                   </div>
                   {/* Audio Player */}
-                  <ReactAudioPlayer
-                    src={voice.audioFile}
-                    controls
-                    className={styles.audioPlayer}
-                  />
+                  <CustomAudioPlayer audioFile={voice.audioFile} />
                 </button>
               ))}
             </div>
@@ -251,24 +350,38 @@ const VideoToolSelection = () => {
             </div>
             <div className={styles.custombtn}>
               <button className={styles.customSizeButton}>
-                Custom Size
                 <FaExpandArrowsAlt />
+                Custom Size
               </button>
             </div>
           </div>
           <div className={styles.aspectRatioOptions}>
             <button className={styles.aspectButton}>
-              <h1>Portrait (9:16)</h1>
-              <p>Reels, shorts, TikTok, Stories, etc</p>
+              <div className={styles.portraitContainer}>
+                <div className={styles.portrait}></div>
+                <div>
+                  <h1>Portrait (9:16)</h1>
+                  <p>Reels, shorts, TikTok, Stories, etc</p>
+                </div>
+              </div>
             </button>
             <button className={styles.aspectButton}>
-              <h1>Square (1:1)</h1>
-
-              <p>Meta Ads, Instagram, Facebook, etc</p>
+              <div className={styles.squareContainer}>
+                <div className={styles.square}></div>
+                <div>
+                  <h1>Square (1:1)</h1>
+                  <p>Meta Ads, Instagram, Facebook, etc</p>
+                </div>
+              </div>
             </button>
             <button className={styles.aspectButton}>
-              <h1>Landscape (16:9)</h1>
-              <p>Youtube, Linkedin,Tv, etc/</p>
+              <div className={styles.landscapeContainer}>
+                <div className={styles.landscape}></div>
+                <div>
+                  <h1>Landscape (16:9)</h1>
+                  <p>Youtube, Linkedin,Tv, etc/</p>
+                </div>
+              </div>
             </button>
           </div>
         </div>
@@ -363,7 +476,9 @@ const VideoToolSelection = () => {
                 </p>
               </div>
               <div className={styles.selctvoicebtn}>
-                <MdOutlineTune className={styles.tune} />
+                <div className={styles.iconWrapper}>
+                  <MdOutlineTune className={styles.tune} />
+                </div>
                 <button className={styles.generateScriptButton}>
                   <FiUploadCloud />
                   Upload Audio
@@ -388,11 +503,7 @@ const VideoToolSelection = () => {
                     </div>
                   </div>
                   {/* Audio Player */}
-                  <ReactAudioPlayer
-                    src={voice.audioFile}
-                    controls
-                    className={styles.audioPlayer}
-                  />
+                  <CustomAudioPlayer audioFile={voice.audioFile} />
                 </button>
               ))}
             </div>
@@ -402,27 +513,31 @@ const VideoToolSelection = () => {
         {/* Captions Section */}
         <div className={styles.captionsSection}>
           <div className={styles.captionContainer}>
-          <div>
-          <h3>Caption</h3>
-          <p>Select a preset to add to your captions</p>
-          </div>        
-          <div>
-            <button className={styles.generateScriptButton}>
-              <BiCaptions />
-              Custom Captions
-            </button>
+            <div>
+              <h3>Caption</h3>
+              <p>Select a preset to add to your captions</p>
+            </div>
+            <div>
+              <button className={styles.generateScriptButton}>
+                <BiCaptions />
+                Custom Captions
+              </button>
+            </div>
           </div>
-          </div>
-          
+
           <div className={styles.captionOptions}>
+            <button className={styles.captionOption}>
+              <div className={styles.notIcon}>
+                <MdDoNotDisturb />
+              </div>
+            </button>
             <button className={styles.captionOption}>Plain</button>
+            <button className={styles.basicOption}>Basic</button>
             <button className={styles.captionOption}>Basic</button>
-            <button className={styles.captionOption}>YouTuber</button>
-            <button className={styles.captionOption}>Wrap1</button>
-            <button className={styles.captionOption}>Wrap2</button>
-            <button className={styles.captionOption}>Bold & Classy</button>
-            <button className={styles.captionOption}>Wrap2</button>
-            <button className={styles.captionOption}>Bold & Classy</button>
+            <button className={styles.youtuberOption}>Youtuber</button>
+            <button className={styles.wrap1Option}><p>Wrap1</p></button>
+            <button className={styles.wrap2Option}><p>Wrap2</p></button>
+            <button className={styles.boldOption}> <h1>Bold & Classy</h1></button>
           </div>
         </div>
         <div className={styles.generatebtn}>
@@ -436,8 +551,15 @@ const VideoToolSelection = () => {
 
       {/* Sample Preview Section */}
       <div className={styles.rightSection}>
-        <h3>Sample Preview</h3>
-        <p>Short / Reel Creator</p>
+        <div className={styles.preview}>
+          <MdInfoOutline className={styles.leftinfoIcon} />
+
+          <div>
+            <h3>Sample Preview</h3>
+            <p>Short / Reel Creator</p>
+          </div>
+        </div>
+
         <Image
           src="/Images/VideoCreation/Overview.png"
           alt="Orb of the Eternal Sage"
