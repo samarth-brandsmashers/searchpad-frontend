@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import React from 'react'
 import ToolsHomeSidebar from '../components/sidebars/ToolsHomeSidebar'
 
