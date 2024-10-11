@@ -337,7 +337,6 @@ const Home = () => {
           className={`${style.fourthSection} flex gap-7 mt-14 justify-center items-center`}
         >
           <ShowCard
-            photo={abcd}
             title={"Brand Assets"}
             description={
               "Ensure brand consistency with unified colors, fonts, logos, and visuals for a polished, professional look"
@@ -472,14 +471,7 @@ const ShowCard = ({ photo, title, description }) => (
     className={`${style.showcard} max-w-md rounded overflow-hidden p-11 shadow-lg`}
   >
     <div className={`${style.showCardImgContainer} h-[205px] overflow-hidden`}>
-      <Image
-        className="w-full"
-        src={photo}
-        alt={title}
-        width={115}
-        height={110}
-        layout="responsive"
-      />
+      <Image className="w-full" src={photo} alt={title} />
     </div>
     <div className="py-4 mt-6 text-center">
       <div className="text-white-500 text-[36px] mb-2">{title}</div>
