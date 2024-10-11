@@ -9,7 +9,7 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import Image from "next/image";
 import { BsDatabaseFill } from "react-icons/bs";
 
-const Navbar = () => {
+const Navbar = ({ title }) => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
 
   const toggleDropdown = () => {
@@ -23,7 +23,8 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navItems}>
-        <div>
+        <div className={styles.arrowIcon}>
+          <FaLongArrowAltLeft/>
         <Image
             src={'/Images/logos/Searchpad.png'}
             alt="Logo"
@@ -33,7 +34,7 @@ const Navbar = () => {
             layout="responsive"
           />
         </div>
-        <div>Video Creation</div>
+        <div>{ title }</div>
         <div className={styles.rightSection}>
           <div className={styles.upgradeSection}>
             <BsDatabaseFill className={styles.token} />

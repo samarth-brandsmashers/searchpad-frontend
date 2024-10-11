@@ -8,7 +8,11 @@
     color: white;
     border-bottom: 0.5px solid #3F3F3F;
   }
-  
+  .arrowIcon{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
   .navIcons{
     display: flex;
     align-items: center;

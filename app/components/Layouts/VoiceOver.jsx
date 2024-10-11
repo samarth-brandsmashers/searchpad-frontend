@@ -8,7 +8,7 @@ import styles from "@/styles/tools/tools.module.css"
 const ToolsHomeLayout = ({ children }) => {
   return (
     <div style={{ display: "flex" ,flexDirection: "column" }}>
-      <VideoCreationNavbar/>
+      <VideoCreationNavbar title="Voice Creation"/>
       <div style={{ flex: 1, display: "flex", flexDirection: "row" }}>
         <VoiceCreationSidebar />
         <div className={styles.section}>
