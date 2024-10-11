@@ -36,7 +36,7 @@ const VideoCreationPage = () => {
   };
   return (
     <>
-  {/* <div className={styles.navsection}>
+  <div className={styles.navsection}>
   <div className={styles.logo}>
     <FaArrowLeftLong style={{ width: '16px', height: '16px' }} className={styles.arrow} />
 
@@ -53,34 +53,35 @@ const VideoCreationPage = () => {
       <Image src={crown} className={styles.crownButton} /> <p className={styles.paragraph}>Upgrade</p>
     </button>
   </div>
-</div> */}
+</div>
 
 
     <div className={styles.container}>
-     <nav className={styles.sidebar}>
-      <ul className={styles.navLinks}>
-          
-        <li className={styles.listItem}> <Image src={homes}/>  Home </li>
-         
-        <li className={styles.listItem}><Image src={myinspretion}/> Templates</li>
-
-        <li  className={styles.listItem}><Image src={myinspretion}/> Projects</li>
-
-      </ul>
+  
+   <nav className={styles.sidebar}>
+   <ul className={styles.navLinks}>
+          <li className={styles.listItem}> <Image src={homes}/>  Home </li>
+           
+          <li className={styles.listItem}><Image src={myinspretion}/> Templates</li>
+  
+          <li  className={styles.listItem}><Image src={myinspretion}/> Projects</li>
+    </ul>
 
        
-<div className={styles.upgradeSection}>
+  <div className={styles.upgradeSection}>
   <Image src={crown} className={styles.crown}/>
   <h1 className={styles.headingss}>Unlock the full power of Generative AI</h1>
   <p className={styles.paragraphss}>Go limitless with Searchpad</p>
-  <button className={styles.upgradeButton}>Upgrade Plan</button>
+  <button className={styles.upgradeButton}><span className={styles.upgradetext}>Upgrade Plan</span></button>
 </div>
+
+
 
 <div className={styles.profileContainer}>
       <Image src={profile} alt="Profile" className={styles.profileImage} />
       <h1 className={styles.profileName} onClick={toggleDropdown}>
         Sanusilamide
-        <FaChevronDown className={styles.icon} /> 
+        <FaChevronDown className={styles.icon}   /> 
       </h1>
       {isDropdownOpen && (
         <ul className={styles.dropdownList}>
@@ -91,7 +92,9 @@ const VideoCreationPage = () => {
       )}
     </div>
 
-</nav>
+    </nav>
+
+
 
 <main className={styles.mainContent}>
      

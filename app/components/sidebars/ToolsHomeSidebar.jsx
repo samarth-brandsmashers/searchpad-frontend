@@ -135,7 +135,7 @@ export default function ToolsHomeSidebar() {
       )}
     </div>
 
-      </nav>
+    </nav>
 
      <main className={styles.mainContent}>
       <div className={styles.topBar}>

@@ -41,28 +41,17 @@
     align-items: center;
    }
   
- /* Sidebar Navigation */
-  /* .sidebar {
-    background: #1C1C1C;
-    border-right: 0.5px solid #3F3F3F;
-    width: 50% !important;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: #268BFF;
-   } */
+ 
    
    .sidebar {
     /* background: #1C1C1C; */
     border-right: 0.5px solid #3F3F3F;
-    width: 50% !important;  /* Reasonable width increase */
+    min-width: 14rem;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
+} 
   .arrow{
     margin-right: 10px;
    }
@@ -91,13 +80,11 @@ text-align: left;
   .crownButton {
     width: 16px; 
     height: 16px; 
-  }
+   }
   
-  
-  .navLinks {
+   .navLinks {
     list-style: none;
-   
-  }
+   }
   
   .navLinks li {
     margin-bottom: 10px;
@@ -138,12 +125,7 @@ font-weight: 400;
 line-height: 16.94px;
 letter-spacing: -0.02em;
 text-align: left;
-
-
-
 }
-
-  
   .navLinks li:hover {
     color: #fff;
   }
@@ -154,14 +136,11 @@ text-align: left;
     justify-content: center;
     align-items: center;
     margin-top: auto;
-    /* background-color: #2e2d2b; */
     border: 1px solid;
-    background-color: #171C5E;
     padding: 10px 0px;
     box-shadow: #171717;
     border-radius: 10px;
-   
-  }
+   }
   
   .upgradeButton {
     width: 100%;
@@ -177,8 +156,8 @@ text-align: left;
 
 
   .upgradeSection {
-    text-align: center; /* Center text in the upgrade section */
-    padding: 20px;
+    text-align: center; 
+    padding: 5px;
   }
   
   .imageContainer {
@@ -196,8 +175,8 @@ text-align: left;
   
  /* Main Content */
   .mainContent {
-    /* flex: 1; */
-    padding: 0px 40px;
+    flex: 1;
+    padding: 0px 20px;
     color:#FFFFFF;
   }
  
