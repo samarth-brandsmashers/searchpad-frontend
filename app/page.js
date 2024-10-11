@@ -1,12 +1,15 @@
-import Image from "next/image";
-import VoiceOver from "./components/VoiceOver/VoiceOver";
+import React from "react";
+import VoiceOver from "./components/voiceOver/VoiceOver";
+import Workspace from "./components/voiceOver/Workspace";
+import MyComponent from "./components/voiceOver/MyComponent";
+import Home from "./components/homePage/Home";
 
-export default function Home() {
+const page = () => {
   return (
- <>
-<>
-<VoiceOver/>
-</>
- </>
+    <>
+      <Home />
+    </>
   );
-}
+};
+
+export default page;
