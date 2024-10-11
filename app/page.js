@@ -1,17 +1,15 @@
-import Image from "next/image";
-import ToolsHomeSidebar from "./components/sidebars/ToolsHomeSidebar";
-import VideoCreationPage from "./components/sidebars/VideoCreations";
-import GraphicDesign from "./components/GraphicDesign/GraphicDesign";
-import GraphicsTool from "./components/GraphicDesign/GraphicsTool";
+import React from "react";
+import VoiceOver from "./components/voiceOver/VoiceOver";
+import Workspace from "./components/voiceOver/Workspace";
+import MyComponent from "./components/voiceOver/MyComponent";
+import Home from "./components/homePage/Home";
 
-export default function Home() {
+const page = () => {
   return (
-    <div>
-    <ToolsHomeSidebar/>
-       {/* <VideoCreationPage/>   */}
-       {/* <GraphicDesign/>  */}
-      {/* <GraphicsTool/>
-     */}
-    </div>
+    <>
+      <Home />
+    </>
   );
-}
+};
+
+export default page;

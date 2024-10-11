@@ -6,17 +6,17 @@
   
    }
 
-
   .navsection {
     display: flex;
     justify-content: space-between; 
     align-items: center; 
     text-align: center;
     background: #1C1C1C;
-    width: 100%;
+    width: 1513px;
     height: 72px;
-   
-    border-bottom: 0.5px solid #3F3F3F;
+    gap: 0px;
+    border: 0px 0px 0.7px 0px;
+    opacity: 0px;
    
   }
   
@@ -41,17 +41,27 @@
     align-items: center;
    }
   
- 
-   
-   .sidebar {
-    /* background: #1C1C1C; */
+ /* Sidebar Navigation */
+  /* .sidebar {
+    background: #1C1C1C;
     border-right: 0.5px solid #3F3F3F;
-    min-width: 14rem;
+    width: 50% !important;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-} 
+    justify-content: space-between;
+    background-color: #268BFF;
+   } */
+   .sidebar {
+    background: #1C1C1C;
+    border-right: 0.5px solid #3F3F3F;
+    max-width: 100%; /* Test with a fixed width */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+   }
   .arrow{
     margin-right: 10px;
    }
@@ -136,11 +146,12 @@ text-align: left;
     justify-content: center;
     align-items: center;
     margin-top: auto;
+    background-color: #2e2d2b;
     border: 1px solid;
     padding: 10px 0px;
     box-shadow: #171717;
     border-radius: 10px;
-   }
+  }
   
   .upgradeButton {
     width: 100%;
@@ -377,7 +388,6 @@ opacity: 0px;
   }
   
   .generateButton{
-
     background: linear-gradient(110.25deg, #8A71FF 14.25%, #6949FF 47.06%);
     margin-left: 10px;
     border: none;
