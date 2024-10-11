@@ -7,7 +7,7 @@ import Home from "./components/homePage/Home";
 const page = () => {
   return (
     <>
-       <Home/>
+      <Home />
     </>
   );
 };
