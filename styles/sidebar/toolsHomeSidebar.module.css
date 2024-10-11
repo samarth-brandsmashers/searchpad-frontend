@@ -18,11 +18,12 @@
   }
   
   .logo {
+    
     margin-top: 20px;
     font-weight: bold;
     display: flex;
     align-items: center;
-    text-align: center;
+    text-align: start;
     justify-content: space-evenly;
     color: #FFFFFF;
     font-size: 24px;
@@ -39,7 +40,7 @@ text-align: left;
 
   }
   .forwordicon{
-    margin-left: 40px;
+    margin-left: 60px;
   }
   
   .navLinks {
@@ -80,15 +81,13 @@ text-align: left;
   }
   
 .headingss{
+  padding-bottom: 5px;
   color: #FFFFFF;
-  margin-left: 10px;
-  margin-bottom: 10px;
- 
   font-size: 13px;
   font-weight: 400;
   line-height: 15.51px;
   letter-spacing: -0.02em;
-  text-align: left;
+  text-align: center;
   
 }
 
@@ -157,6 +156,7 @@ text-align: left;
     line-height: 15.73px;
     letter-spacing: -0.02em;
     text-align: center;
+   
     
   }
 
