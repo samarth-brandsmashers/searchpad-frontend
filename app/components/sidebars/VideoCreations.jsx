@@ -91,7 +91,9 @@ const VideoCreationPage = () => {
       )}
     </div>
 
-</nav>
+    </nav>
+
+
 
 <main className={styles.mainContent}>
      
