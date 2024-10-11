@@ -9,6 +9,7 @@ import Shape from "@/public/VoiceOver/shape.png";
 import arrow from "@/public/VoiceOver/arrow.png";
 import coins from "@/public/VoiceOver/coins.png";
 import crown from "@/public/VoiceOver/crown.png";
+
 const VoiceOver = () => {
   const samplePrompts = [
     "Create a modern portfolio website for a graphic designer with bold visuals and smooth navigation",
