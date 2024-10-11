@@ -90,13 +90,11 @@ text-align: left;
   .crownButton {
     width: 16px; 
     height: 16px; 
-  }
+   }
   
-  
-  .navLinks {
+   .navLinks {
     list-style: none;
-   
-  }
+   }
   
   .navLinks li {
     margin-bottom: 10px;
@@ -137,12 +135,7 @@ font-weight: 400;
 line-height: 16.94px;
 letter-spacing: -0.02em;
 text-align: left;
-
-
-
 }
-
-  
   .navLinks li:hover {
     color: #fff;
   }
@@ -174,8 +167,8 @@ text-align: left;
 
 
   .upgradeSection {
-    text-align: center; /* Center text in the upgrade section */
-    padding: 20px;
+    text-align: center; 
+    padding: 5px;
   }
   
   .imageContainer {
@@ -193,8 +186,8 @@ text-align: left;
   
  /* Main Content */
   .mainContent {
-    /* flex: 1; */
-    padding: 0px 40px;
+    flex: 1;
+    padding: 0px 20px;
     color:#FFFFFF;
   }
  
@@ -354,8 +347,8 @@ opacity: 0px;
 
 /* search box */ 
 .searchContainer {
-    margin: 20px 50px;
-    width: 90%;
+    margin: 2rem 8rem;
+    width: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
