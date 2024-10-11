@@ -71,7 +71,7 @@ export default function ToolsHomeSidebar() {
         <li  className={styles.listItem}><Image src={myinspretion}/> Inspirations</li>
 
         
-          <div className="flex items-center">
+    <div className="flex items-center">
       <h2 className={styles.headingss}>AI Tools</h2>
       <IoIosArrowDown className="downicon" />
     </div>
@@ -88,16 +88,13 @@ export default function ToolsHomeSidebar() {
           <li  className={styles.listItem}><Image src={document}/>Document Creation</li>
 
         
-          <div className="flex items-center">
-          <div className="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
-        <span className={styles.middleheadiing}>
+      <div className="flex items-center">
+       <div className="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
+      <span className={styles.middleheadiing}>
         Data & Visualization
       </span>
-         
-
-
-          <div class="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
-        </div>
+       <div class="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
+      </div>
 
           <li className={styles.listItem}><Image src={graphics}/>Graphic Design</li>
 

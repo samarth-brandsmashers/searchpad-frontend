@@ -8,10 +8,24 @@ import { BsCloudUpload } from "react-icons/bs";
 import { RiRobot2Line } from "react-icons/ri";
 import styles from "../../../styles/GaphicsDesign/GraphicsTool.module.css";
 import { RiRobot2Fill } from "react-icons/ri";
-// import SeparatorWithText from "../Seperators/Seperators";
-// import { BsStars } from "react-icons/bs";
 import dalle from '../../../public/dalle.png';
 import { MdInfoOutline } from "react-icons/md";
+import InpuText from "./InputTex";
+import imageCreation from '../../../public/imageCreation.png';
+import videoCreation from '../../../public/videoCreation.png';
+import anime from '../../../public/anime.png';
+import visualization from '../../../public/visualization.png';
+import voiceover from '../../../public/voiceover.png';
+import documents from '../../../public/documents.png';
+import robos from '../../../public/robos.png';
+import stoke from '../../../public/stoke.png';
+import custom from '../../../public/custom.png';
+import aiimage from '../../../public/aiimage.png';
+import business from '../../../public/business.png';
+import education from '../../../public/education.png';
+import creative from '../../../public/creative.png';
+
+
 
 const GraphicsTool = () => {
   return (
@@ -32,75 +46,8 @@ const GraphicsTool = () => {
         <BsStars />
         Regenerate Copy
       </div>
-      {/* <SeparatorWithText text="Outlines" /> */}
-
-      <div className={styles.sections}>
-        <div className={styles.section}>
-          <div className={styles.dots}>
-            <RxDragHandleDots2 className={styles.dotsIcon} />
-          </div>
-          <div>
-            <h2>Mission Statement</h2>
-            <p>
-              To empower small businesses with innovative technology solutions
-              that drive growth and efficiency.
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.section}>
-          <div className={styles.dots}>
-            <RxDragHandleDots2 className={styles.dotsIcon} />
-          </div>
-          <div>
-            <h2>Vision Statement</h2>
-            <p>
-              To be the global leader in providing affordable and scalable
-              digital solutions to businesses of all sizes.
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.section}>
-          <div className={styles.dots}>
-            <RxDragHandleDots2 className={styles.dotsIcon} />
-          </div>
-          <div>
-            <h2>Core Values</h2>
-            <ul>
-              <li>
-                <strong>Integrity</strong> – We believe in honesty and
-                transparency.
-              </li>
-              <li>
-                <strong>Customer-Centricity</strong> – Our customers' needs are
-                central.
-              </li>
-              <li>
-                <strong>Innovation</strong> – We seek creative solutions to
-                drive progress.
-              </li>
-              <li>
-                <strong>Teamwork</strong> – We collaborate for success.
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <div className={styles.section}>
-          <div className={styles.dots}>
-            <RxDragHandleDots2 className={styles.dotsIcon} />
-          </div>
-          <div>
-            <h2>Closing Statement</h2>
-            <p>
-              Driven by our mission, inspired by our vision, and guided by our
-              values, we're here to make a difference.
-            </p>
-          </div>
-        </div>
-        <div className={styles.addSection}>+ Add Section</div>
-      </div>
+      
+           <InpuText/>
 
       {/* <SeparatorWithText text="Prefrences" /> */}
       <div className={styles.brandingGuidelines}>
@@ -201,10 +148,10 @@ const GraphicsTool = () => {
               <div className={styles.optionCard}>
                 <div className={styles.cardIcon}>
                   <Image
-                    src="/Images/Robot.png"
+                    src={robos}
                     alt="robo"
-                    width={300}
-                    height={300}
+                    width={200}
+                    height={200}
                     layout="responsive"
                   />
                 </div>
@@ -236,7 +183,7 @@ const GraphicsTool = () => {
               <div className={styles.optionCard}>
                 <div className={styles.imagecardIcon}>
                   <Image
-                    src="/Images/Premium.png"
+                    src={stoke}
                     alt="robo"
                     width={300}
                     height={500}
@@ -252,7 +199,7 @@ const GraphicsTool = () => {
               <div className={styles.optionCard}>
                 <div className={styles.imagecardIcon}>
                   <Image
-                    src="/Images/Custom.png"
+                    src={custom}
                     alt="robo"
                     width={300}
                     height={300}
@@ -268,7 +215,7 @@ const GraphicsTool = () => {
               <div className={styles.optionCard}>
                 <div className={styles.imagecardIcon}>
                   <Image
-                    src="/Images/AiGenerated.png"
+                    src={aiimage}
                     alt="robo"
                     width={300}
                     height={500}
@@ -290,18 +237,18 @@ const GraphicsTool = () => {
             <div className={styles.styleOptions}>
               <div className={styles.styleOption}>
                 <Image
-                  src="/Images/VideoCreation/Realistic.png" // Update with the actual image path
+                  src={imageCreation}// Update with the actual image path
                   alt="Realistic"
                   layout="responsive"
                   width={100} // Adjust width according to your design
-                  height={100} // Adjust height according to your design
+                  height={100} 
                   className={styles.styleImage}
                 />
                 <span>Realistic</span>
               </div>
               <div className={styles.styleOption}>
                 <Image
-                  src="/Images/VideoCreation/illustration.png" // Update with the actual image path
+                  src={videoCreation} // Update with the actual image path
                   alt="Illustration"
                   width={100}
                   height={100}
@@ -312,7 +259,7 @@ const GraphicsTool = () => {
               </div>
               <div className={styles.styleOption}>
                 <Image
-                  src="/Images/VideoCreation/Anime.png" // Update with the actual image path
+                  src={anime} // Update with the actual image path
                   alt="Anime"
                   width={100}
                   height={100}
@@ -323,7 +270,7 @@ const GraphicsTool = () => {
               </div>
               <div className={styles.styleOption}>
                 <Image
-                  src="/Images/VideoCreation/Water Painting.png" // Update with the actual image path
+                  src={visualization} // Update with the actual image path
                   alt="Water Painting"
                   width={100}
                   height={100}
@@ -334,7 +281,7 @@ const GraphicsTool = () => {
               </div>
               <div className={styles.styleOption}>
                 <Image
-                  src="/Images/VideoCreation/Sci-fi.png" // Update with the actual image path
+                  src={voiceover}// Update with the actual image path
                   alt="Sci-fi"
                   width={100}
                   height={100}
@@ -345,7 +292,7 @@ const GraphicsTool = () => {
               </div>
               <div className={styles.styleOption}>
                 <Image
-                  src="/Images/VideoCreation/Realistic.png" // Update with the actual image path
+                  src={documents} // Update with the actual image path
                   alt="Imaginative"
                   width={100}
                   height={100}
@@ -371,7 +318,7 @@ const GraphicsTool = () => {
               <div className={styles.optionCard}>
                 <div className={styles.imagecardIcon}>
                 <Image
-                    src="/Images/Business.png"
+                    src={business}
                     alt="robo"
                     width={300}
                     height={300}
@@ -390,7 +337,7 @@ const GraphicsTool = () => {
               <div className={styles.optionCard}>
                 <div className={styles.imagecardIcon}>
                 <Image
-                    src="/Images/Education.png"
+                    src={education}
                     alt="robo"
                     width={300}
                     height={300}
@@ -406,7 +353,7 @@ const GraphicsTool = () => {
               <div className={styles.optionCard}>
                 <div className={styles.imagecardIcon}>
                 <Image
-                    src="/Images/Creative.png"
+                    src={creative}
                     alt="robo"
                     width={300}
                     height={300}
@@ -438,7 +385,7 @@ const GraphicsTool = () => {
   <div >
     <MdInfoOutline className={styles.icon}/>
   </div>
-  <div>
+  <div className={styles.text}>
   <p>Simple preview</p>
   <h1>Add Captions to video</h1>
   </div>
