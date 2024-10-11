@@ -36,7 +36,7 @@ const VideoCreationPage = () => {
   };
   return (
     <>
-  <div className={styles.navsection}>
+  {/* <div className={styles.navsection}>
   <div className={styles.logo}>
     <FaArrowLeftLong style={{ width: '16px', height: '16px' }} className={styles.arrow} />
 
@@ -53,7 +53,7 @@ const VideoCreationPage = () => {
       <Image src={crown} className={styles.crownButton} /> <p className={styles.paragraph}>Upgrade</p>
     </button>
   </div>
-</div>
+</div> */}
 
 
     <div className={styles.container}>
