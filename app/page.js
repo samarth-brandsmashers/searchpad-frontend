@@ -7,11 +7,11 @@ import GraphicsTool from "./components/GraphicDesign/GraphicsTool";
 export default function Home() {
   return (
     <div>
-    {/* <ToolsHomeSidebar/> */}
-       <VideoCreationPage/>  
+    <ToolsHomeSidebar/>
+       {/* <VideoCreationPage/>   */}
        {/* <GraphicDesign/>  */}
-      {/* <GraphicsTool/> */}
-    
+      {/* <GraphicsTool/>
+     */}
     </div>
   );
 }
