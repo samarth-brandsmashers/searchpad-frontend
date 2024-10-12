@@ -3,15 +3,18 @@ import ToolsHomeSidebar from "./components/sidebars/ToolsHomeSidebar";
 import VideoCreationPage from "./components/sidebars/VideoCreations";
 import GraphicDesign from "./components/GraphicDesign/GraphicDesign";
 import GraphicsTool from "./components/GraphicDesign/GraphicsTool";
+import SignUp from "./components/SignUp/SignUp";
 
 export default function Home() {
   return (
     <div>
-    <ToolsHomeSidebar/>
+    {/* <ToolsHomeSidebar/> */}
        {/* <VideoCreationPage/>   */}
        {/* <GraphicDesign/>  */}
       {/* <GraphicsTool/>
      */}
+
+     
     </div>
   );
 }
