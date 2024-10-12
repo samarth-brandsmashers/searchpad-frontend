@@ -9,7 +9,7 @@ import crown from "@/public/VoiceOver/crown.png";
 const WebsiteDesignAi = () => {
   return (
     <div className="bg-[#1C1C1C] text-white min-h-screen  ">
-      <nav className="bg-[#1C1C1C] text-white p-4">
+      {/* <nav className="bg-[#1C1C1C] text-white p-4">
         <div className="max-w-[full] mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <button className="mr-4">
@@ -51,7 +51,7 @@ const WebsiteDesignAi = () => {
             </span>
           </div>
         </div>
-      </nav>
+      </nav> */}
       <div class="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
       <div className="w-[825px] mt-7 mx-auto">
         <h1 className={`${style.heading} text-4xl font-bold text-center mb-2`}>

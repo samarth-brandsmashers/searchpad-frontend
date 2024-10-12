@@ -157,14 +157,59 @@
   border-radius: 24px;
 }
 
-.showCardImgContainer {
-  margin: auto;
-  /* padding: 40px;
-  max-width: 284px;
-  max-height: 177px; */
+.buttonccontainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Positioning context for absolute elements */
+}
+.button {
+  width: 324px;
+  height: 74px;
+  border-radius: 60px;
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: all 0.3s; /* Smooth transition */
+}
+.firstbutton {
+  background: linear-gradient(189.26deg, #6949ff -69.3%, #3f2c99 140.07%);
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 24px;
+  position: relative; /* Needed for overlap */
+  margin: -10px 0; /* Adjust margin to overlap */
+  z-index: 1; /* Bring it above other buttons */
+}
+.middlebutton {
+  background: linear-gradient(55.28deg, #55175e -8.78%, #fc5d5d 89.55%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  width: 276px;
+  position: relative; /* Needed for overlap */
+  transform: rotate(10deg); /* Tilt the middle button */
+  margin: 5px 0; /* Adjust margin to overlap */
+  z-index: 2; /* Bring it above other buttons */
+}
+.thirdbutton {
+  background: linear-gradient(165.91deg, #ddffb3 -2.74%, #0e5816 81.02%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  position: relative; /* Needed for overlap */
+  margin: -10px 0; /* Adjust margin to overlap */
+  z-index: 3; /* Bring it below the middle button */
+}
+.buttontext {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.36px;
+  letter-spacing: -0.02em;
+  text-align: left;
 }
 .showOfSection {
   margin: auto;
@@ -185,10 +230,10 @@
 }
 .thirdSection {
   display: flex;
-  gap: 3rem;
-  justify-content: center;
+  gap: 7rem;
+  justify-content: space-between;
   align-items: center;
-  padding: 2rem 8rem;
+  padding: 2rem 5rem;
 }
 .thirdSectionsecond {
   display: flex;
@@ -199,4 +244,20 @@
 
 .smallCard {
   background: linear-gradient(15.89deg, #171717 -0.76%, #272727 87.17%);
+}
+.scrollcontainer {
+  width: 240px; /* Width of the container */
+  height: 154px; /* Height of the container */
+  overflow: hidden; /* Prevent default scrollbar */
+  position: relative; /* Required for pseudo-element */
+}
+
+.scrollcontent {
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scrolling */
+  padding-right: 15px; /* Space for hidden scrollbar */
+}
+.scrollcontent::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
 }

@@ -68,9 +68,9 @@ const PresentationPage = () => {
         <h1 className={`${styles.heading} text-4xl font-bold text-center mb-2`}>
           Design engaging presentations <br /> effortlessly with AI
         </h1>
-        <p className="text-center text-[#C9C9C9] mb-8 text-[13px] font-light leading-[15.73px] tracking-[-0.02em]">
-          Transform your ideas into fully responsive websites with just a few
-          clicks.
+        <p className="text-center text-[#C9C9C9] mb-8 text-[13px] font-[300] opacity-85 leading-[15.73px] ">
+          Quickly generate slides that captivate and convey your message
+          effectively.
         </p>
         <textarea
           className="w-full bg-[#2C2C2C] text-white p-4 rounded-lg mb-4 resize-none min-h-[80px] max-h-[300px]"
@@ -80,7 +80,7 @@ const PresentationPage = () => {
 
         <div class="flex items-center">
           <div class="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
-          <span class="mx-10 !font-extralight text-[#C9C9C9] text-center">
+          <span class="mx-10 text[11px] font-[400] text-[#C9C9C9] text-center">
             Sample Prompt
           </span>
 
@@ -90,7 +90,7 @@ const PresentationPage = () => {
           {samplePrompts.map((prompt, index) => (
             <div
               key={index}
-              className="bg-[#2C2C2C] p-6 rounded-lg flex items-start justify-center  font-normal text-xs "
+              className={` ${styles.cards}  p-6  flex items-start justify-center`}
             >
               <div className="flex flex-row gap-4 ">
                 <span className="text-purple-400 mr-2 mt-1 flex-shrink-0 flex justify-center items-center">

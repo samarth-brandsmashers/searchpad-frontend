@@ -6,7 +6,7 @@ import Image from "next/image";
 import { IoIosImages } from "react-icons/io";
 import { GoInfo } from "react-icons/go";
 import { MdOutlineTune } from "react-icons/md";
-import ReactAudioPlayer from "react-audio-player";
+// import ReactAudioPlayer from "react-audio-player";
 import { FaExpandArrowsAlt } from "react-icons/fa";
 import { FiUploadCloud } from "react-icons/fi";
 import { BsStars } from "react-icons/bs";
@@ -536,9 +536,16 @@ const VideoToolSelection = () => {
             <button className={styles.basicOption}>Basic</button>
             <button className={styles.captionOption}>Basic</button>
             <button className={styles.youtuberOption}>Youtuber</button>
-            <button className={styles.wrap1Option}><p>Wrap1</p></button>
-            <button className={styles.wrap2Option}><p>Wrap2</p></button>
-            <button className={styles.boldOption}> <h1>Bold & Classy</h1></button>
+            <button className={styles.wrap1Option}>
+              <p>Wrap1</p>
+            </button>
+            <button className={styles.wrap2Option}>
+              <p>Wrap2</p>
+            </button>
+            <button className={styles.boldOption}>
+              {" "}
+              <h1>Bold & Classy</h1>
+            </button>
           </div>
         </div>
         <div className={styles.generatebtn}>
