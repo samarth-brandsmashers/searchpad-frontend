@@ -8,9 +8,9 @@ import PresentationPrompt from "./components/presentation-page/PresentaionPrompt
 
 const page = () => {
   return (
-    <>
-      <PresentationPage />
-    </>
+    <div>
+<Home/>
+    </div>
   );
 };
 
