@@ -1,9 +1,15 @@
 import styles from '../../../styles/GaphicsDesign/Input.module.css';
+import { FiPlus } from "react-icons/fi";
 
   const InpuText = () => {
   return (
     <>
-     <h1  className={styles.middleSection}>Design copy</h1>
+       <div class="flex items-center">
+          <div class="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
+           <h1  className={styles.middleSection}>Design copy</h1>
+
+          <div class="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
+        </div>
 
      
      <div className={styles.container}>
@@ -44,12 +50,18 @@ import styles from '../../../styles/GaphicsDesign/Input.module.css';
         </div>
 
         <div className={styles.addMore}>
-          <button className={styles.button}>+ Add more</button>
+          <button className={styles.button}>+  <span className={styles.spantext}>Add more</span> </button>
         </div>
       </div>
       </div>
       <div className={styles.footer}>
-        <p className={styles.middleSection}>Preferences</p>
+       
+        <div class="flex items-center">
+          <div class="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
+           <h1  className={styles.middleSection}>Preferences</h1>
+          <div class="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
+        </div>
+        
       </div>
   
     </>

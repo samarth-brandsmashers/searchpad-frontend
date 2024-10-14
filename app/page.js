@@ -5,9 +5,7 @@ import InpuText from "./components/GraphicDesign/InputTex";
 export default function Home() {
   return (
     <div>
-  
-     
-     <InpuText/>
+
     </div>
   );
 }
