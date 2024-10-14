@@ -1,6 +1,6 @@
 // components/PresentationPage.jsx
-
-import React from "react";
+'use client'
+import React ,{useState} from "react";
 import Image from "next/image";
 import { BsStars } from "react-icons/bs";
 import { RxDragHandleDots2 } from "react-icons/rx";
@@ -27,22 +27,142 @@ import creative from "../../../public/creative.png";
 import arow from '../../../public/graphics/arow.png'
 
 const GraphicsTool = () => {
+  const [prompt, setPrompt] = useState("");
+  const [primaryColors, setPrimaryColors] = useState([]);
+  const [secondaryColors, setSecondaryColors] = useState([]);
+  const [headlineFont, setHeadlineFont] = useState("Inter (Bold)");
+  const [bodyFont, setBodyFont] = useState("Inter (Regular)");
+  const [generatedImageUrl, setGeneratedImageUrl] = useState(dalle); // To store the generated graphic
+
+  const handleGenerateClick = async () => {
+    // Prepare the data to send to the backend
+    const data = {
+      prompt
+    };
+
+    try {
+      // API call to generate the graphic
+      const response = await fetch("http://192.168.1.30:8004/graphic/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        const result = await response.text();
+        console.log("RESULT => ", result);
+        setGeneratedImageUrl(result); // Assuming the API returns a URL or base64 image
+      } else {
+        console.error("Failed to generate the graphic");
+      }
+    } catch (error) {
+      console.error("Error generating the graphic:", error);
+    }
+  };
+
+
   return (
     <div className={styles.container}>
-      <div className={styles.presentationContainer}>
-        <div className={styles.header}>
-          <h1>Design engaging presentations effortlessly with AI</h1>
-        </div>
-        <div className={styles.prompt}>
-          <h1>Prompt</h1>
-          <textarea
-            className={styles.textarea}
-            placeholder="A modern slide highlighting the company's mission, vision, and core values, featuring clean icons and bold headings."
-          ></textarea>
-        </div>
-        <div className={styles.regenerate}>
-          <BsStars />
-          Regenerate Copy
+     
+    <div className={styles.presentationContainer}>
+      <div className={styles.header}>
+        <h1>Design engaging presentations effortlessly with AI</h1>
+      </div>
+      <div className={styles.prompt}>
+        <h1>Prompt</h1>
+        <textarea
+          className={styles.textarea}
+          placeholder="A modern slide highlighting the company's mission, vision, and core values, featuring clean icons and bold headings."
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+        ></textarea>
+      </div>
+      <div className={styles.regenerate}>
+        <BsStars />
+        Regenerate Copy
+      </div>
+      
+           <InpuText/>
+
+      {/* <SeparatorWithText text="Prefrences" /> */}
+      <div className={styles.brandingGuidelines}>
+        <h2>Design Preferences & Branding Guidelines</h2>
+        <p>
+          Maintain brand consistency through colors, fonts, logos, and visuals
+          for a cohesive, professional presentation.
+        </p>
+
+        {/* Color Section */}
+        <div className={styles.colorandtypography}>
+          <div className={styles.colorSection}>
+            <div className={styles.colorPicker}>
+              <label>Color</label>
+              <input type="color" className={styles.colorInput} onChange={(e) => setPrimaryColors([...primaryColors, e.target.value])} />
+            </div>
+            <div className={styles.color}></div>
+            <div className={styles.colorDisplay}>
+              <div className={styles.primaryColors}>
+                <h3>Primary Colors</h3>
+                <div className={styles.colorblockcontainer}>
+                  <div className={styles.colorBlock}>+</div>
+                  <div className={styles.colorBlock}>+</div>
+                  <div className={styles.colorBlock}>+</div>
+                </div>
+              </div>
+              <div className={styles.secondaryColors}>
+                <h3>Secondary Colors</h3>
+                <input
+                  type="color"
+                  onChange={(e) => setSecondaryColors([...secondaryColors, e.target.value])}
+                />
+                <div className={styles.colorblockcontainer}>
+                  <div className={styles.colorBlock}>+</div>
+                  <div className={styles.colorBlock}>+</div>
+                  <div className={styles.colorBlock}>+</div>
+                  <div className={styles.colorBlock}>+</div>
+                  <div className={styles.colorBlock}>+</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Typography Section */}
+          <div className={styles.typographySection}>
+            Typography
+            <div className={styles.typo}>
+              <div className={styles.typography}>
+                <label>Headline (Secondary Font)</label>
+                <select className={styles.fontSelect} value={headlineFont}
+                onChange={(e) => setHeadlineFont(e.target.value)}>
+                  <option>Inter (Bold)</option>
+                  <option>Roboto (Bold)</option>
+                  <option>Arial (Bold)</option>
+                </select>
+              </div>
+              <div className={styles.typography}>
+                <label>Body text (Primary Font)</label>
+                <select className={styles.fontSelect}>
+                  <option>Inter (Bold)</option>
+                  <option>Roboto (Regular)</option>
+                  <option>Arial (Regular)</option>
+                </select>
+              </div>
+            </div>
+            <div className={styles.logoUpload}>
+              <label>Logo</label>
+              <div className={styles.uploadBox}>
+                <BsCloudUpload className={styles.uploadIcon} />
+                <p>
+                  Drag & drop or <span>Choose file</span>
+                </p>
+                <p className={styles.uploadNote}>
+                  For better result upload: PNG, SVG files
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <InpuText />
@@ -260,225 +380,38 @@ const GraphicsTool = () => {
               </div>
             </div>
 
-            {/* visualization section */}
-
-           
-            
-
-            {/* Image Type */}
-            <div className={styles.imageType}>
-              <h3>Image Type</h3>
-              <div className={styles.optionCards}>
-                <div className={styles.optioncard}>
-                  <div className={styles.imagecardIcon}>
-                    <Image
-                      src={stoke}
-                      alt="robo"
-                      width={300}
-                      height={500}
-                      layout="responsive"
-                      className={styles.imageIcon}
-                    />
-                  </div>
-                  <div className={styles.iconContainer}>
-                    <h className={styles.heading}>Premium stock photos</h>
-                    <small className={styles.para}>Generic images to represent abstract concepts</small>
-                  </div>
-                </div>
-                <div className={styles.optioncard}>
-                  <div className={styles.imagecardIcon}>
-                    <Image
-                      src={custom}
-                      alt="robo"
-                      width={300}
-                      height={300}
-                      layout="responsive"
-                      className={styles.imageIcon}
-                    />
-                  </div>
-                  <div className={styles.iconContainer}>
-                    <h className={styles.heading}>Custom Images</h>
-                    <small className={styles.para}>Unique images tailored to your brand</small>
-                  </div>
-                </div>
-                <div className={styles.optioncard}>
-                  <div className={styles.imagecardIcon}>
-                    <Image
-                      src={aiimage}
-                      alt="robo"
-                      width={300}
-                      height={500}
-                      layout="responsive"
-                      className={styles.imageIcon}
-                    />
-                  </div>
-                  <div className={styles.iconContainer}>
-                    <h className={styles.heading}>AI Generated Image</h>
-                    <small className={styles.para}>Generic images to represent abstract concepts</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* AI Generated Images */}
-            <div className={styles.videoGenerationStyle}>
-              <h3>Ai generated Image</h3>
-              <div className={styles.styleOptions}>
-                <div className={styles.styleOption}>
-                  <Image
-                    src={imageCreation} // Update with the actual image path
-                    alt="Realistic"
-                    layout="responsive"
-                    width={100} // Adjust width according to your design
-                    height={100}
-                    className={styles.styleImage}
-                  />
-                  <span>Realistic</span>
-                </div>
-                <div className={styles.styleOption}>
-                  <Image
-                    src={videoCreation} // Update with the actual image path
-                    alt="Illustration"
-                    width={100}
-                    height={100}
-                    layout="responsive"
-                    className={styles.styleImage}
-                  />
-                  <span>Illustration</span>
-                </div>
-                <div className={styles.styleOption}>
-                  <Image
-                    src={anime} // Update with the actual image path
-                    alt="Anime"
-                    width={100}
-                    height={100}
-                    layout="responsive"
-                    className={styles.styleImage}
-                  />
-                  <span>Anime</span>
-                </div>
-                <div className={styles.styleOption}>
-                  <Image
-                    src={visualization} // Update with the actual image path
-                    alt="Water Painting"
-                    width={100}
-                    height={100}
-                    layout="responsive"
-                    className={styles.styleImage}
-                  />
-                  <span>Water Painting</span>
-                </div>
-                <div className={styles.styleOption}>
-                  <Image
-                    src={voiceover} // Update with the actual image path
-                    alt="Sci-fi"
-                    width={100}
-                    height={100}
-                    layout="responsive"
-                    className={styles.styleImage}
-                  />
-                  <span>Sci-fi</span>
-                </div>
-                <div className={styles.styleOption}>
-                  <Image
-                    src={documents} // Update with the actual image path
-                    alt="Imaginative"
-                    width={100}
-                    height={100}
-                    layout="responsive"
-                    className={styles.styleImage}
-                  />
-                  <span>Imaginative</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Tone & Voice Section */}
-            <div className={styles.toneVoice}>
-              <h3>Tone & Voice</h3>
-              <p>
-                Tailor your presentations to meet the specific needs of
-                different audiences and objectives.
-              </p>
-
-              <p1>Presentation Formats</p1>
-
-              <div className={styles.optionCards}>
-                <div className={styles.optioncard}>
-                  <div className={styles.imagecardIcon}>
-                    <Image
-                      src={business}
-                      alt="robo"
-                      width={300}
-                      height={300}
-                      layout="responsive"
-                      className={styles.formatImages}
-                    />
-                  </div>
-                  <div className={styles.iconContainer}>
-                    <h  className={styles.heading}>Business-Oriented Presentations</h>
-                    <small className={styles.para}>
-                      Business Pitch, Investor Deck, Sales Presentation, Product
-                      Demo
-                    </small>
-                  </div>
-                </div>
-
-                <div className={styles.optioncard}>
-                  <div className={styles.imagecardIcon}>
-                    <Image
-                     src={education}
-                      alt="robo"
-                      width={300}
-                      height={300}
-                      layout="responsive"
-                      className={styles.formatImages}
-                    />
-                  </div>
-                  <div className={styles.iconContainer}>
-                    <h  className={styles.heading}>Business-Oriented Presentations</h>
-                    <small className={styles.para}>
-                      Business Pitch, Investor Deck, Sales Presentation, Product
-                      Demo
-                    </small>
-                    
-                  </div>
-                </div>
-                <div className={styles.optioncard}>
-                  <div className={styles.imagecardIcon}>
-                    <Image
-                     src={education}
-                      alt="robo"
-                      width={300}
-                      height={300}
-                      layout="responsive"
-                      className={styles.formatImages}
-                    />
-                  </div>
-                  <div className={styles.iconContainer}>
-                    <h  className={styles.heading}>Business-Oriented Presentations</h>
-                    <small className={styles.para}>
-                      Business Pitch, Investor Deck, Sales Presentation, Product
-                      Demo
-                    </small>
-                    
-                  </div>
-                </div>
-
-                
-              </div>
-            </div>
-
-            {/* Generate Presentation Button */}
-            <div className={styles.generateButton}>
-              <button className={styles.generateBtn}>
-                <BsStars />
-                Generate
-              </button>
-            </div>
+          {/* Generate Presentation Button */}
+          <div className={styles.generateButton}>
+            <button className={styles.generateBtn} onClick={handleGenerateClick}>
+            <BsStars />
+              Generate Graphic
+            </button>
           </div>
         </div>
+        {generatedImageUrl && (
+          <div className={styles.generatedImageContainer}>
+            <h2>Generated Graphic</h2>
+            <img src={generatedImageUrl} alt="Generated Graphic" className={styles.generatedImage} />
+          </div>
+        )}
+
+
       </div>
+     </div>
+
+<div>
+<div className={styles.rightsection}>
+  <div >
+    <MdInfoOutline className={styles.icon}/>
+  </div>
+  <div className={styles.text}>
+  <p>Simple preview</p>
+  <h1>Add Captions to video</h1>
+  </div>
+  
+</div>
+<Image src={generatedImageUrl} height={300} width={200} alt="dalle" className={styles.imageSection} />
+</div>
 
       <div className={styles.ightcontainer}>
         <div className={styles.rightsection}>
@@ -492,6 +425,7 @@ const GraphicsTool = () => {
         </div>
         <Image src={offerimage} alt="dalle" className={styles.imageSection} />
       </div>
+    </div>
     </div>
   );
 };
