@@ -3,14 +3,23 @@ import Image from "next/image";
 
 // Import for CSS
 import styles from "@/styles/VoiceOver/VoiceOver.module.css";
-import projectImg from "@/public/pexels-elly-fairytale-3823207 1@3x.png";
-import heroImg from "@/public/image.png";
-import RectangleImg from "@/public/Rectangle.png";
-import Rectangle2Img from "@/public/Rectangle2.png";
-import emailImg from "@/public/email.png";
-import linkedinImg from "@/public/linkdin.png";
-import instaImg from "@/public/insta.png";
-const VoiceOver = () => {
+import docIcon from "@/public/VoiceOver/docIcon.png";
+import brochure from "@/public/VoiceOver/brochure.png";
+import starIcon from "@/public/VoiceOver/star.png";
+import Shape from "@/public/VoiceOver/shape.png";
+import arrow from "@/public/VoiceOver/arrow.png";
+import coins from "@/public/VoiceOver/coins.png";
+import crown from "@/public/VoiceOver/crown.png";
+const WebsiteDesign = () => {
+  const samplePrompts = [
+    "Create a modern portfolio website for a graphic designer with bold visuals and smooth navigation",
+    "Design a clean and professional website for a tech startup offering cloud services",
+    "Generate a responsive e-commerce website for a clothing brand, featuring a sleek product gallery",
+    "Build a minimalist blog website with easy-to-read typography and a light theme",
+    "Create a landing page for a marketing agency with vibrant colors and animated sections",
+    "Design a restaurant website with a focus on showcasing the menu and customer reviews",
+  ];
+
   return (
     <>
       <div className={styles.voiceOverContainer}>
@@ -138,4 +147,4 @@ const VoiceOver = () => {
   );
 };
 
-export default VoiceOver;
+export default WebsiteDesign;

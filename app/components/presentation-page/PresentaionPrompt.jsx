@@ -1,12 +1,12 @@
 import React from "react";
 import Image from "next/image";
-import style from "@/styles/VoiceOver/workspace.module.css";
+import style from "@/styles/presentation/presentationprompt.module.css";
 import sparkle from "@/public/VoiceOver/sparkles.png";
-import Shape from "@/public/VoiceOver/shape.png";
+import Shape from "@/public/VoiceOver/Slogo.png";
 import arrow from "@/public/VoiceOver/arrow.png";
 import coins from "@/public/VoiceOver/coins.png";
 import crown from "@/public/VoiceOver/crown.png";
-const Workspace = () => {
+const PresentationPrompt = () => {
   return (
     <div className="bg-[#1C1C1C] text-white min-h-screen  ">
       <nav className="bg-[#1C1C1C] text-white p-4">
@@ -22,18 +22,11 @@ const Workspace = () => {
               />
             </button>
             <div className="flex flex-row gap-1">
-              <Image
-                src={Shape}
-                alt="star-icon"
-                width={15}
-                height={10}
-                className="rounded-lg mr-1"
-              />
-              <span className="font-[500] text-[20px]">Searchpad</span>
+              <Image src={Shape} alt="star-icon" />
             </div>
           </div>
           <div className="text-center flex-grow">
-            <span className="font-[500] text-[16px]">Website Design</span>
+            <span className="font-[500] text-[16px]">Presentation</span>
           </div>
           <div className="flex items-center">
             <span className="mr-4 text-[#ffff] text-[14px] flex items-center">
@@ -62,9 +55,7 @@ const Workspace = () => {
       <div class="flex-1 border-t border-[#3F3F3F] border-[0.61px]"></div>
       <div className="w-[825px] mt-7 mx-auto">
         <h1 className={`${style.heading} text-4xl font-bold text-center mb-2`}>
-          Build captivating websites in
-          <br />
-          minutes with AI-driven precision.
+          Design engaging presentations <br /> effortlessly with AI
         </h1>
         <p className="text-center text-[14px] tracking-normal !font-[50] text-[#C9C9C9] mb-8">
           Transform your ideas into fully responsive websites with just a few
@@ -87,11 +78,11 @@ const Workspace = () => {
             height={40} // Adjust height as needed
             className="rounded-lg mr-1" // Optional: to maintain the rounded look
           />
-          Generate Sitemap
+          Generate copy
         </button>
       </div>
     </div>
   );
 };
 
-export default Workspace;
+export default PresentationPrompt;
