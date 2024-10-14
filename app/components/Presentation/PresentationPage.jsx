@@ -1,6 +1,6 @@
 // components/PresentationPage.jsx
-
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Image from "next/image";
 import { BsStars } from "react-icons/bs";
 import { RxDragHandleDots2 } from "react-icons/rx";
@@ -12,6 +12,54 @@ import SeparatorWithText from "../Seperators/Seperators";
 // import { BsStars } from "react-icons/bs";
 
 const PresentationPage = () => {
+  const [prompt, setPrompt] = useState("");
+  const [primary_color, setPrimary_color] = useState("");
+  const [secondary_color, setSecondary_color] = useState("");
+  const [sections, setSections] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // Function to handle API call
+  const handleGeneratePresentation = async () => {
+    console.log("Prompt:", prompt, "Type:", typeof prompt);
+    console.log("Primary Color:", primary_color, "Type:", typeof primary_color);
+    console.log(
+      "Secondary Color:",
+      secondary_color,
+      "Type:",
+      typeof secondary_color
+    );
+    setLoading(true);
+    try {
+      const dataGen={
+        prompt: prompt,
+        primary_color: primary_color,
+        secondary_color: secondary_color
+      }
+      const response = await fetch(
+        "http://192.168.1.30:8004/generate-presentation/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify( dataGen ),
+        }
+      );
+
+      const data = await response.json();
+      if (response.ok) {
+        // Update sections with the API response data
+        setSections(data.sections);
+      } else {
+        console.error("Error generating presentation:", data.message);
+      }
+    } catch (error) {
+      console.error("API call failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className={styles.presentationContainer}>
       <div className={styles.header}>
@@ -21,80 +69,108 @@ const PresentationPage = () => {
         <h1>Prompt</h1>
         <textarea
           className={styles.textarea}
-          placeholder="A modern slide highlighting the company's mission, vision, and core values, featuring clean icons and bold headings."
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          placeholder="Add your prompt."
         ></textarea>
       </div>
-      <div className={styles.regenerate}>
+      <div className={styles.regenerate} onClick={handleGeneratePresentation}>
         <BsStars />
         Regenerate Copy
       </div>
       <SeparatorWithText text="Outlines" />
 
       <div className={styles.sections}>
-        <div className={styles.section}>
-          <div className={styles.dots}>
-            <RxDragHandleDots2 className={styles.dotsIcon} />
-          </div>
-          <div>
-            <h2>Mission Statement</h2>
-            <p>
-              To empower small businesses with innovative technology solutions
-              that drive growth and efficiency.
-            </p>
-          </div>
-        </div>
+        {sections.length > 0 ? (
+          sections.map((section, index) => (
+            <div className={styles.section} key={index}>
+              <div className={styles.dots}>
+                <RxDragHandleDots2 className={styles.dotsIcon} />
+              </div>
+              <div>
+                <h2>{section.title}</h2>
+                {section.content ? (
+                  <p>{section.content}</p>
+                ) : (
+                  <ul>
+                    {section.values.map((value, idx) => (
+                      <li key={idx}>
+                        <strong>{value.title}</strong> – {value.description}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          ))
+        ) : (
+          <>
+            <div className={styles.section}>
+              <div className={styles.dots}>
+                <RxDragHandleDots2 className={styles.dotsIcon} />
+              </div>
+              <div>
+                <h2>Mission Statement</h2>
+                <p>
+                  To empower small businesses with innovative technology
+                  solutions that drive growth and efficiency.
+                </p>
+              </div>
+            </div>
 
-        <div className={styles.section}>
-          <div className={styles.dots}>
-            <RxDragHandleDots2 className={styles.dotsIcon} />
-          </div>
-          <div>
-            <h2>Vision Statement</h2>
-            <p>
-              To be the global leader in providing affordable and scalable
-              digital solutions to businesses of all sizes.
-            </p>
-          </div>
-        </div>
+            <div className={styles.section}>
+              <div className={styles.dots}>
+                <RxDragHandleDots2 className={styles.dotsIcon} />
+              </div>
+              <div>
+                <h2>Vision Statement</h2>
+                <p>
+                  To be the global leader in providing affordable and scalable
+                  digital solutions to businesses of all sizes.
+                </p>
+              </div>
+            </div>
 
-        <div className={styles.section}>
-          <div className={styles.dots}>
-            <RxDragHandleDots2 className={styles.dotsIcon} />
-          </div>
-          <div>
-            <h2>Core Values</h2>
-            <ul>
-              <li>
-                <strong>Integrity</strong> – We believe in honesty and
-                transparency.
-              </li>
-              <li>
-                <strong>Customer-Centricity</strong> – Our customers' needs are
-                central.
-              </li>
-              <li>
-                <strong>Innovation</strong> – We seek creative solutions to
-                drive progress.
-              </li>
-              <li>
-                <strong>Teamwork</strong> – We collaborate for success.
-              </li>
-            </ul>
-          </div>
-        </div>
+            <div className={styles.section}>
+              <div className={styles.dots}>
+                <RxDragHandleDots2 className={styles.dotsIcon} />
+              </div>
+              <div>
+                <h2>Core Values</h2>
+                <ul>
+                  <li>
+                    <strong>Integrity</strong> – We believe in honesty and
+                    transparency.
+                  </li>
+                  <li>
+                    <strong>Customer-Centricity</strong> – Our customers' needs
+                    are central.
+                  </li>
+                  <li>
+                    <strong>Innovation</strong> – We seek creative solutions to
+                    drive progress.
+                  </li>
+                  <li>
+                    <strong>Teamwork</strong> – We collaborate for success.
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-        <div className={styles.section}>
-          <div className={styles.dots}>
-            <RxDragHandleDots2 className={styles.dotsIcon} />
-          </div>
-          <div>
-            <h2>Closing Statement</h2>
-            <p>
-              Driven by our mission, inspired by our vision, and guided by our
-              values, we're here to make a difference.
-            </p>
-          </div>
-        </div>
+            <div className={styles.section}>
+              <div className={styles.dots}>
+                <RxDragHandleDots2 className={styles.dotsIcon} />
+              </div>
+              <div>
+                <h2>Closing Statement</h2>
+                <p>
+                  Driven by our mission, inspired by our vision, and guided by
+                  our values, we're here to make a difference.
+                </p>
+              </div>
+            </div>
+          </>
+        )}
         <div className={styles.addSection}>+ Add Section</div>
       </div>
 
@@ -111,14 +187,31 @@ const PresentationPage = () => {
           <div className={styles.colorSection}>
             <div className={styles.colorPicker}>
               <label>Color</label>
-              <input type="color" className={styles.colorInput} />
+              <input
+                type="color"
+                value={primary_color}
+                onChange={(e) => setPrimary_color(e.target.value)}
+                className={styles.colorInput}
+              />
+              <label>Secondary Color</label>
+              <input
+                type="color"
+                value={secondary_color}
+                onChange={(e) => setSecondary_color(e.target.value)}
+                className={styles.colorInput}
+              />
             </div>
             <div className={styles.color}></div>
             <div className={styles.colorDisplay}>
               <div className={styles.primaryColors}>
                 <h3>Primary Colors</h3>
                 <div className={styles.colorblockcontainer}>
-                  <div className={styles.colorBlock}>+</div>
+                  <div
+                    className={styles.colorBlock}
+                    style={{ backgroundColor: { primary_color } }}
+                  >
+                    +
+                  </div>
                   <div className={styles.colorBlock}>+</div>
                   <div className={styles.colorBlock}>+</div>
                 </div>
@@ -366,7 +459,7 @@ const PresentationPage = () => {
             <div className={styles.optionCards}>
               <div className={styles.optionCard}>
                 <div className={styles.imagecardIcon}>
-                <Image
+                  <Image
                     src="/Images/Business.png"
                     alt="robo"
                     width={300}
@@ -385,7 +478,7 @@ const PresentationPage = () => {
               </div>
               <div className={styles.optionCard}>
                 <div className={styles.imagecardIcon}>
-                <Image
+                  <Image
                     src="/Images/Education.png"
                     alt="robo"
                     width={300}
@@ -401,7 +494,7 @@ const PresentationPage = () => {
               </div>
               <div className={styles.optionCard}>
                 <div className={styles.imagecardIcon}>
-                <Image
+                  <Image
                     src="/Images/Creative.png"
                     alt="robo"
                     width={300}
@@ -420,9 +513,14 @@ const PresentationPage = () => {
 
           {/* Generate Presentation Button */}
           <div className={styles.generateButton}>
-            <button className={styles.generateBtn}>
-            <BsStars />
-              Generate Presentation
+            <button
+              className={styles.generateBtn}
+              onClick={handleGeneratePresentation}
+              disabled={loading}
+            >
+              <BsStars />
+              {loading ? "Generating..." : "Generate Presentation"}
+              {/* Generate Presentation */}
             </button>
           </div>
         </div>

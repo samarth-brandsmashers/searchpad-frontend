@@ -6,13 +6,14 @@ import Image from "next/image";
 import { IoIosImages } from "react-icons/io";
 import { GoInfo } from "react-icons/go";
 import { MdOutlineTune } from "react-icons/md";
-import ReactAudioPlayer from "react-audio-player";
+// import ReactAudioPlayer from "react-audio-player";
 import { FaExpandArrowsAlt } from "react-icons/fa";
 import { FiUploadCloud } from "react-icons/fi";
 import { BsStars } from "react-icons/bs";
 import { BiCaptions } from "react-icons/bi";
 import { MdInfoOutline } from "react-icons/md";
 import { MdDoNotDisturb } from "react-icons/md";
+import AudioPlayer from "../AudioPlayer/AudioPlayer";
 
 const CustomAudioPlayer = ({ audioFile, title, artist }) => {
   const audioRef = useRef(null);
@@ -315,7 +316,7 @@ const VideoToolSelection = () => {
                     </div>
                   </div>
                   {/* Audio Player */}
-                  <CustomAudioPlayer audioFile={voice.audioFile} />
+                  <AudioPlayer audioSrc={voice.audioFile} />
                 </button>
               ))}
             </div>
@@ -504,7 +505,7 @@ const VideoToolSelection = () => {
                     </div>
                   </div>
                   {/* Audio Player */}
-                  <CustomAudioPlayer audioFile={voice.audioFile} />
+                  <AudioPlayer audioSrc={voice.audioFile} />
                 </button>
               ))}
             </div>

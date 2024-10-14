@@ -132,6 +132,12 @@
   .selectVoiceContainer {
     border-bottom: 0.5px solid #3f3f3f;
   }
+
+  .selectVoiceSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   
   .voiceDetails {
     display: flex;

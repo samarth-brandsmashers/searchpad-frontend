@@ -1,15 +1,10 @@
 "use client";
 import styles from "@/styles/VoiceOver/VoiceOverPage.module.css";
 import { IoIosImages } from "react-icons/io";
-import { GoInfo } from "react-icons/go";
 import { MdOutlineTune } from "react-icons/md";
 import Image from "next/image";
-import { FaExpandArrowsAlt } from "react-icons/fa";
-import { FiUploadCloud } from "react-icons/fi";
 import { BsStars } from "react-icons/bs";
-import { BiCaptions } from "react-icons/bi";
-import { MdInfoOutline } from "react-icons/md";
-import { MdDoNotDisturb } from "react-icons/md";
+import AudioPlayer from "../AudioPlayer/AudioPlayer";
 
 import React, { useState, useRef, useEffect } from "react";
 
@@ -111,6 +106,14 @@ const CustomAudioPlayer = ({ audioFile, title, artist }) => {
 };
 const VoiceOver = () => {
   const [selectedTool, setSelectedTool] = useState("Short / Reel Creator");
+  const [prompt, setPrompt] = useState(""); // For the script prompt
+  const [voiceEngine, setVoiceEngine] = useState("Play3.0"); // For the voice engine
+  const [voice, setVoice] = useState(
+    "s3://voice-cloning-zero-shot/d9ff78ba-d016-47f6-b0ef-dd630f59414e/female-cs/manifest.json"
+  ); // For the voice selection
+  const [outputFormat, setOutputFormat] = useState("mp3"); // For output format
+  const [generatedAudio, setGeneratedAudio] = useState(null); // For storing the audio file URL
+  const [loading, setLoading] = useState(false); // For loading state
 
   const tools = [
     "AI Voice for Blogs",
@@ -167,6 +170,100 @@ const VoiceOver = () => {
     setSelectedTool(tool);
   };
 
+  // const handleGenerateAudio = async () => {
+  //   if (!prompt.trim() || !voiceEngine.trim() || !voice.trim() || !outputFormat.trim()) {
+  //     alert("Please fill in all the fields before generating audio.");
+  //     return;
+  //   }
+
+  //   setLoading(true);
+  //   try {
+  //     const postData = {
+  //       text: prompt,           // Sending the text (prompt)
+  //       voice_engine: voiceEngine, // Sending the selected voice engine
+  //       voice: voice,           // Sending the selected voice
+  //       output_format: outputFormat // Send the prompt as the request body
+  //     };
+  //     console.log("POST DATA => ", postData);
+  //     const response = await fetch("http://192.168.31.54:8004/text-to-speech/", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(postData),
+  //     });
+
+  //     console.log("RESPONSE => ", response);
+
+  //     if (!response.ok) {
+  //       throw new Error("Failed to generate audio");
+  //     }
+
+  //     const blob = await response.blob();
+  //     const url = URL.createObjectURL(blob);
+  //     console.log(url)
+  //     setGeneratedAudio(url); // Assuming the response includes an audio URL
+  //   } catch (error) {
+  //     console.error("Error generating audio:", error);
+  //     alert("There was an issue generating the audio. Please try again.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
+  // ---------------------------
+
+  const handleGenerateAudio = async () => {
+    if (
+      !prompt.trim() ||
+      !voiceEngine.trim() ||
+      !voice.trim() ||
+      !outputFormat.trim()
+    ) {
+      alert("Please fill in all the fields before generating audio.");
+      return;
+    }
+    setLoading(true);
+    try {
+      const postData = {
+        text: prompt, // Sending the text (prompt)
+        voice_engine: voiceEngine, // Sending the selected voice engine
+        voice: voice, // Sending the selected voice
+        output_format: outputFormat, // Send the prompt as the request body
+      };
+
+      const response = await fetch(
+        "http://192.168.31.54:8004/text-to-speech/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(postData),
+        }
+      );
+
+      console.log("RESPONSE =>", response);
+
+      if (!response.ok) {
+        throw new Error("Failed to generate audio");
+      }
+
+      // Get the audio file URL from the response
+      const audioBlob = await response.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+
+      setGeneratedAudio(audioUrl); // Set the generated audio URL
+    } catch (error) {
+      console.error("Error generating audio:", error);
+      alert("There was an issue generating the audio. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ---------------------------
+
   return (
     <div className={styles.container}>
       <div className={styles.leftSection}>
@@ -216,6 +313,8 @@ const VoiceOver = () => {
           <textarea
             placeholder="Outline your video"
             className={styles.textarea}
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
           ></textarea>
         </div>
 
@@ -245,34 +344,53 @@ const VoiceOver = () => {
             <div className={styles.voiceOptions}>
               {voiceOptions.map((voice) => (
                 <button key={voice.name} className={`${styles.voiceButton}`}>
-                  <div className={styles.voiceDetails}>
-                    <Image
-                      src="/Images/VideoCreation/userIcon.png" // Replace with actual path to the user icon
-                      alt="User Icon"
-                      width={30} // Adjust size according to design
-                      height={30}
-                      className={styles.userIcon}
-                    />
+                  <div className={styles.selectVoiceSection}>
                     <div>
-                      <span className={styles.voiceName}>{voice.name}</span>
-                      <p>{voice.description}</p>
+                      <div className={styles.voiceDetails}>
+                        <Image
+                          src="/Images/VideoCreation/userIcon.png" // Replace with actual path to the user icon
+                          alt="User Icon"
+                          width={30} // Adjust size according to design
+                          height={30}
+                          className={styles.userIcon}
+                        />
+                        <div>
+                          <span className={styles.voiceName}>{voice.name}</span>
+                          <p>{voice.description}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      {/* Audio Player */}
+                      <AudioPlayer audioSrc={voice.audioFile} />
                     </div>
                   </div>
-                  {/* Audio Player */}
-                  <CustomAudioPlayer audioFile={voice.audioFile} />
                 </button>
               ))}
             </div>
           </div>
         </div>
         <div className={styles.generatebtn}>
-          <button className={styles.generateButton}>
+          <button
+            className={styles.generateButton}
+            onClick={handleGenerateAudio}
+            disabled={loading}
+          >
             <BsStars />
-            Generate Audio
+            {loading ? "Generating..." : "Generate Audio"}
           </button>
         </div>
+        {generatedAudio && (
+          <div className={styles.audioPlayerContainer}>
+            <h3>Generated Audio</h3>
+            <audio
+              controls
+              src={generatedAudio}
+              className={styles.audioPlayer}
+            />
+          </div>
+        )}
       </div>
-      
     </div>
   );
 };

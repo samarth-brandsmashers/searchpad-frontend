@@ -1,6 +1,6 @@
 // components/PresentationPage.jsx
-
-import React from "react";
+'use client'
+import React ,{useState} from "react";
 import Image from "next/image";
 import { BsStars } from "react-icons/bs";
 import { RxDragHandleDots2 } from "react-icons/rx";
@@ -28,6 +28,42 @@ import creative from '../../../public/creative.png';
 
 
 const GraphicsTool = () => {
+  const [prompt, setPrompt] = useState("");
+  const [primaryColors, setPrimaryColors] = useState([]);
+  const [secondaryColors, setSecondaryColors] = useState([]);
+  const [headlineFont, setHeadlineFont] = useState("Inter (Bold)");
+  const [bodyFont, setBodyFont] = useState("Inter (Regular)");
+  const [generatedImageUrl, setGeneratedImageUrl] = useState(dalle); // To store the generated graphic
+
+  const handleGenerateClick = async () => {
+    // Prepare the data to send to the backend
+    const data = {
+      prompt
+    };
+
+    try {
+      // API call to generate the graphic
+      const response = await fetch("http://192.168.1.30:8004/graphic/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        const result = await response.text();
+        console.log("RESULT => ", result);
+        setGeneratedImageUrl(result); // Assuming the API returns a URL or base64 image
+      } else {
+        console.error("Failed to generate the graphic");
+      }
+    } catch (error) {
+      console.error("Error generating the graphic:", error);
+    }
+  };
+
+
   return (
     <div className={styles.container}>
      
@@ -40,6 +76,8 @@ const GraphicsTool = () => {
         <textarea
           className={styles.textarea}
           placeholder="A modern slide highlighting the company's mission, vision, and core values, featuring clean icons and bold headings."
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
         ></textarea>
       </div>
       <div className={styles.regenerate}>
@@ -62,7 +100,7 @@ const GraphicsTool = () => {
           <div className={styles.colorSection}>
             <div className={styles.colorPicker}>
               <label>Color</label>
-              <input type="color" className={styles.colorInput} />
+              <input type="color" className={styles.colorInput} onChange={(e) => setPrimaryColors([...primaryColors, e.target.value])} />
             </div>
             <div className={styles.color}></div>
             <div className={styles.colorDisplay}>
@@ -76,6 +114,10 @@ const GraphicsTool = () => {
               </div>
               <div className={styles.secondaryColors}>
                 <h3>Secondary Colors</h3>
+                <input
+                  type="color"
+                  onChange={(e) => setSecondaryColors([...secondaryColors, e.target.value])}
+                />
                 <div className={styles.colorblockcontainer}>
                   <div className={styles.colorBlock}>+</div>
                   <div className={styles.colorBlock}>+</div>
@@ -93,7 +135,8 @@ const GraphicsTool = () => {
             <div className={styles.typo}>
               <div className={styles.typography}>
                 <label>Headline (Secondary Font)</label>
-                <select className={styles.fontSelect}>
+                <select className={styles.fontSelect} value={headlineFont}
+                onChange={(e) => setHeadlineFont(e.target.value)}>
                   <option>Inter (Bold)</option>
                   <option>Roboto (Bold)</option>
                   <option>Arial (Bold)</option>
@@ -371,12 +414,20 @@ const GraphicsTool = () => {
 
           {/* Generate Presentation Button */}
           <div className={styles.generateButton}>
-            <button className={styles.generateBtn}>
+            <button className={styles.generateBtn} onClick={handleGenerateClick}>
             <BsStars />
-              Generate Presentation
+              Generate Graphic
             </button>
           </div>
         </div>
+        {generatedImageUrl && (
+          <div className={styles.generatedImageContainer}>
+            <h2>Generated Graphic</h2>
+            <img src={generatedImageUrl} alt="Generated Graphic" className={styles.generatedImage} />
+          </div>
+        )}
+
+
       </div>
      </div>
 
@@ -391,7 +442,7 @@ const GraphicsTool = () => {
   </div>
   
 </div>
-<Image src={dalle} alt="dalle" className={styles.imageSection} />
+<Image src={generatedImageUrl} height={300} width={200} alt="dalle" className={styles.imageSection} />
 </div>
 
     </div>

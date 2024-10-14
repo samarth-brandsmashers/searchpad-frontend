@@ -1,4 +1,3 @@
-// components/ToolsHomeLayout.tsx
 import React from 'react';
 import VideoCreationNavbar from '../VideoCreation/VideoCreationNavbar'
 import VoiceCreationSidebar from '../sidebars/VoiceOverSidebar';
@@ -9,14 +8,13 @@ const ToolsHomeLayout = ({ children }) => {
   return (
     <div style={{ display: "flex" ,flexDirection: "column" }}>
       <VideoCreationNavbar title="Voice Creation"/>
-      <div style={{ flex: 1, display: "flex", flexDirection: "row" }}>
-        <VoiceCreationSidebar />
+      {/* <div style={{ flex: 1, display: "flex", flexDirection: "row" }}>
+        <VoiceCreationSidebar /> */}
         <div className={styles.section}>
-          {/* <VoiceCreationSidebar/> */}
           {children}
         </div>
       </div>
-    </div>
+    // </div>
   );
 };
 
